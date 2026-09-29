@@ -1,18 +1,18 @@
 # Astra oracle client for TypeScript
 
 ```ts
-import { AstraClient } from "@avee/sdk/astra";
+import { AstraClient } from "@avee_tech/sdk/astra";
 const [btc] = await new AstraClient().latestPrices(["0xe62df6c8b4a85fe1a67db44dc12de5db330f7ac66b72dc658afedf0f4a415b43"]);
 console.log(btc.price.toDecimalString()); // "83095.4425"
 ```
 
 Astra is avee's composite exchange index served over the routes and JSON shapes of Pyth's Hermes. No
-key is needed. `@avee/sdk/astra` wraps its REST, SSE and WebSocket surfaces with typed models, retries and
+key is needed. `@avee_tech/sdk/astra` wraps its REST, SSE and WebSocket surfaces with typed models, retries and
 reconnects. Zero runtime dependencies: it uses the global `fetch` and `WebSocket` of Node ≥ 22 and of
 browsers.
 
 ```sh
-npm install @avee/sdk
+npm install @avee_tech/sdk
 ```
 
 The default host is the preview host `https://astra.preview.avee.tech`; pass a base URL to use another

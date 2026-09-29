@@ -1,4 +1,4 @@
-import { AveeApiError, AveeClient, PREVIEW_BASE_URL } from "@avee/sdk";
+import { AveeApiError, AveeClient, PREVIEW_BASE_URL } from "@avee_tech/sdk";
 
 const client = new AveeClient({ baseUrl: process.env.AVEE_BASE_URL ?? PREVIEW_BASE_URL });
 

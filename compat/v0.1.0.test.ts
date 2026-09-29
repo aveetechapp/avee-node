@@ -20,7 +20,7 @@ import {
   type RateLimit,
   type RequestOptions,
   type ResponseInfo,
-} from "@avee/sdk";
+} from "@avee_tech/sdk";
 import { afterAll, beforeAll, expect, it } from "vitest";
 
 const counts = { buys: 1, sells: 1, buy_volume: 1.5, sell_volume: 1.5, buyers: 1, sellers: 1 };

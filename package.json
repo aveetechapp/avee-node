@@ -1,7 +1,7 @@
 {
-  "name": "@avee/sdk",
+  "name": "@avee_tech/sdk",
   "version": "0.1.0",
-  "description": "Clients for avee: the DEX data API (/api/v1) and Astra, the Hermes-compatible price oracle (@avee/sdk/astra).",
+  "description": "Clients for avee: the DEX data API (/api/v1) and Astra, the Hermes-compatible price oracle (@avee_tech/sdk/astra).",
   "license": "MIT",
   "type": "module",
   "repository": {

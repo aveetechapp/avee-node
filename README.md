@@ -1,7 +1,7 @@
 # avee DEX data API client for TypeScript
 
 ```ts
-import { AveeClient } from "@avee/sdk";
+import { AveeClient } from "@avee_tech/sdk";
 const page = await new AveeClient().pairs({ chains: ["base"], sort: "liquidity", limit: 10 });
 console.log(page.items[0]?.pair_address);
 ```
@@ -12,7 +12,7 @@ needed. Zero runtime dependencies: it uses the global `fetch` of Node ≥ 20 and
 CJS builds are shipped.
 
 ```sh
-npm install @avee/sdk
+npm install @avee_tech/sdk
 ```
 
 The default host is the preview host `https://api.preview.avee.tech/api/v1` (`DEFAULT_BASE_URL`, equal to
@@ -188,10 +188,10 @@ const client = new AveeClient({
 ## Astra price oracle
 
 The package also carries the client for Astra, avee's Hermes-compatible price oracle, at the
-`@avee/sdk/astra` entry point. Importing `@avee/sdk` alone never loads it.
+`@avee_tech/sdk/astra` entry point. Importing `@avee_tech/sdk` alone never loads it.
 
 ```ts
-import { AstraClient } from "@avee/sdk/astra";
+import { AstraClient } from "@avee_tech/sdk/astra";
 const [btc] = await new AstraClient().latestPrices(["0xe62df6c8b4a85fe1a67db44dc12de5db330f7ac66b72dc658afedf0f4a415b43"]);
 ```
 
@@ -206,7 +206,7 @@ is checked against its model before it is returned: a missing required field or 
 type is an `AveeValidationError` naming the field, and `null` in an optional field reads as absent.
 Inside a major version the package is additive only.
 
-## Moving from the avee-agents `@avee/sdk` 0.1
+## Moving from the avee-agents `@avee_tech/sdk` 0.1
 
 That package covered five calls; this one covers every operation, named by its `operationId`.
 

@@ -31,7 +31,7 @@ import {
   type StatusReport,
   type SubscribeOptions,
   type SubscriptionStats,
-} from "@avee/sdk/astra";
+} from "@avee_tech/sdk/astra";
 import { BTC, BTC_ASTRA, ETH, UNKNOWN, startAstra } from "./fake.ts";
 
 const constants: number[] = [FEED_IDS_PER_REQUEST, MAX_EXPO, MAX_HISTORICAL_FEEDS, MAX_IDS_PER_REQUEST, MAX_IDS_PER_URL, MAX_INTERVAL_SECONDS, MAX_SCALE_DECIMALS, MIN_EXPO];

@@ -21,10 +21,10 @@
       "node"
     ],
     "paths": {
-      "@avee/sdk": [
+      "@avee_tech/sdk": [
         "./src/index.ts"
       ],
-      "@avee/sdk/astra": [
+      "@avee_tech/sdk/astra": [
         "./src/astra/index.ts"
       ]
     }

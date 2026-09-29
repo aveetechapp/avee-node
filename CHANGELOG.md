@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.1.0 — unreleased
+## 0.1.0 — 2026-09-29
 
 - First release: every operation of `/api/v1` as a typed method, models generated from the OpenAPI
   document, tolerant of unknown fields and enum values.
@@ -14,7 +14,7 @@
 - Every response is checked against its model before it is returned.
 - An object of constants beside every value-set type (`SortBy.Volume`, `TimeFrame.H24`), and `@default` on every parameter the server defaults.
 
-### Astra price oracle (`@avee/sdk/astra`)
+### Astra price oracle (`@avee_tech/sdk/astra`)
 
 - `MAX_IDS_PER_URL` (200): the ids that fit one URL before the edge rejects the request line.
   `latestPrices` splits a longer list into sequential requests of 200 and merges them in request
