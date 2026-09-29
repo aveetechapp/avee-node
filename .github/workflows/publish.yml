@@ -18,5 +18,6 @@ jobs:
           node-version: 24
           registry-url: https://registry.npmjs.org
       - run: test "v$(node -p 'require("./package.json").version')" = "$GITHUB_REF_NAME"
+      - run: npm install -g npm@latest
       - run: npm ci
       - run: npm publish --access public
