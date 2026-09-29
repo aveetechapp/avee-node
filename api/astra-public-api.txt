@@ -1,0 +1,230 @@
+class AstraClient
+class AstraClient candles(q: CandlesQuery): Promise<Candle[]>
+class AstraClient constructor(options?: AstraClientOptions)
+class AstraClient feedIds(q?: FeedIdsQuery): Promise<FeedIdMap>
+class AstraClient feeds(q?: FeedsQuery): Promise<Feed[]>
+class AstraClient latestPrices(ids: Iterable<string>, options?: PriceRequestOptions): Promise<PriceUpdate[]>
+class AstraClient priceFeed(id: string, options?: RequestOptions): Promise<FeedMetadata>
+class AstraClient priceFeeds(q?: PriceFeedsQuery): Promise<FeedMetadata[]>
+class AstraClient pricesAt(publishTime: number, ids: Iterable<string>, options?: PriceRequestOptions): Promise<PriceUpdate[]>
+class AstraClient pricesInInterval(publishTime: number, intervalSeconds: number, ids: Iterable<string>, options?: IntervalRequestOptions): Promise<PriceUpdate[]>
+class AstraClient readonly baseUrl: string
+class AstraClient status(options?: StatusOptions): Promise<StatusReport>
+class AstraClient subscribe(ids: Iterable<string>, options?: SubscribeOptions): Subscription
+class AstraConnectionError
+class AstraConnectionError extends AstraError
+class AstraConnectionError name: string
+class AstraError
+class AstraError extends Error
+class AstraError name: string
+class AstraHttpError
+class AstraHttpError constructor(init: { status: number; url: string; body: string; problem?: Problem | undefined; retryAfterMs?: number | undefined; detail?: string | undefined; })
+class AstraHttpError extends AstraError
+class AstraHttpError get retryable(): boolean
+class AstraHttpError name: string
+class AstraHttpError readonly body: string
+class AstraHttpError readonly problem: Problem | undefined
+class AstraHttpError readonly retryAfterMs: number | undefined
+class AstraHttpError readonly status: number
+class AstraHttpError readonly url: string
+class AstraSubscriptionError
+class AstraSubscriptionError extends AstraError
+class AstraSubscriptionError name: string
+class AstraTimeoutError
+class AstraTimeoutError extends AstraError
+class AstraTimeoutError name: string
+class AstraValidationError
+class AstraValidationError extends AstraError
+class AstraValidationError name: string
+class Price
+class Price confScaled(decimals: number): bigint
+class Price confToNumber(): number
+class Price constructor(price: string, conf: string, expo: number, publishTime: number)
+class Price readonly conf: string
+class Price readonly expo: number
+class Price readonly price: string
+class Price readonly publishTime: number
+class Price scaled(decimals: number): bigint
+class Price toDecimalString(): string
+class Price toNumber(): number
+class Subscription
+class Subscription [Symbol.asyncIterator](): AsyncGenerator<PriceUpdate, void, undefined>
+class Subscription close(): void
+class Subscription constructor(ids: readonly FeedId[], transport: StreamTransport, policy: ReconnectPolicy, hooks: SubscriptionHooks, signal?: AbortSignal)
+class Subscription get connectionState(): ConnectionState
+class Subscription get error(): AstraError | undefined
+class Subscription get stats(): Readonly<SubscriptionStats>
+class Subscription implements AsyncIterable<PriceUpdate>
+class Subscription readonly done: Promise<void>
+class Subscription readonly ids: readonly FeedId[]
+const DEFAULT_BASE_URL: unknown
+const FEED_IDS_PER_REQUEST: unknown
+const MAX_EXPO: unknown
+const MAX_HISTORICAL_FEEDS: unknown
+const MAX_IDS_PER_REQUEST: unknown
+const MAX_IDS_PER_URL: unknown
+const MAX_INTERVAL_SECONDS: unknown
+const MAX_SCALE_DECIMALS: unknown
+const MIN_EXPO: unknown
+function normalizeFeedId(id: string): FeedId
+interface AstraClientOptions
+interface AstraClientOptions WebSocket?: WebSocketConstructor | undefined
+interface AstraClientOptions baseUrl?: string | undefined
+interface AstraClientOptions fetch?: typeof fetch | undefined
+interface AstraClientOptions headers?: Record<string, string> | undefined
+interface AstraClientOptions maxResponseBytes?: number | undefined
+interface AstraClientOptions maxRetries?: number | undefined
+interface AstraClientOptions maxRetryDelayMs?: number | undefined
+interface AstraClientOptions timeoutMs?: number | undefined
+interface Candle
+interface Candle close: number
+interface Candle high: number
+interface Candle low: number
+interface Candle open: number
+interface Candle time: number
+interface CandlesQuery
+interface CandlesQuery extends RequestOptions
+interface CandlesQuery feed: string
+interface CandlesQuery from: number
+interface CandlesQuery resolution: Resolution
+interface CandlesQuery to: number
+interface Feed
+interface Feed attributes: Readonly<Record<string, string>>
+interface Feed category: string
+interface Feed id: FeedId
+interface Feed live: LiveValue
+interface Feed pythId?: FeedId
+interface Feed symbol: string
+interface FeedHealth
+interface FeedHealth ageSeconds: number
+interface FeedHealth id: FeedId
+interface FeedHealth publishTime: number
+interface FeedHealth servedPublishTime: number
+interface FeedHealth sources: number
+interface FeedHealth stale: boolean
+interface FeedHealth status: FeedStatus
+interface FeedHealth symbol: string
+interface FeedIdEntry
+interface FeedIdEntry assetType: string
+interface FeedIdEntry astraId: FeedId
+interface FeedIdEntry category: string
+interface FeedIdEntry pythId?: FeedId
+interface FeedIdEntry symbol: string
+interface FeedIdMap
+interface FeedIdMap items: FeedIdEntry[]
+interface FeedIdMap missing?: FeedId[]
+interface FeedIdsQuery
+interface FeedIdsQuery astraIds?: Iterable<string> | undefined
+interface FeedIdsQuery category?: string | undefined
+interface FeedIdsQuery extends RequestOptions
+interface FeedIdsQuery pythIds?: Iterable<string> | undefined
+interface FeedMetadata
+interface FeedMetadata assetType: string
+interface FeedMetadata astraId: FeedId
+interface FeedMetadata attributes: Readonly<Record<string, string>>
+interface FeedMetadata base?: string
+interface FeedMetadata description: string
+interface FeedMetadata displaySymbol: string
+interface FeedMetadata id: FeedId
+interface FeedMetadata marketOpen: boolean
+interface FeedMetadata minChannel: string
+interface FeedMetadata quoteCurrency: string
+interface FeedMetadata schedule?: string
+interface FeedMetadata symbol: string
+interface FeedsQuery
+interface FeedsQuery category?: string | undefined
+interface FeedsQuery extends RequestOptions
+interface IntervalRequestOptions
+interface IntervalRequestOptions extends PriceRequestOptions
+interface IntervalRequestOptions unique?: boolean | undefined
+interface LiveValue
+interface LiveValue expo: number
+interface LiveValue price?: Price
+interface LiveValue publishTime: number
+interface LiveValue servedPublishTime: number
+interface LiveValue sources: number
+interface LiveValue status: FeedStatus
+interface LiveValue timestampMs: number
+interface PriceFeedsQuery
+interface PriceFeedsQuery assetType?: string | undefined
+interface PriceFeedsQuery extends RequestOptions
+interface PriceFeedsQuery query?: string | undefined
+interface PriceRequestOptions
+interface PriceRequestOptions extends RequestOptions
+interface PriceRequestOptions ignoreInvalid?: boolean | undefined
+interface PriceUpdate
+interface PriceUpdate emaPrice: Price
+interface PriceUpdate id: FeedId
+interface PriceUpdate metadata?: UpdateMetadata
+interface PriceUpdate price: Price
+interface Problem
+interface Problem detail: string
+interface Problem status: number
+interface Problem title: string
+interface Problem type: string
+interface RequestOptions
+interface RequestOptions signal?: AbortSignal | undefined
+interface StatusOptions
+interface StatusOptions extends RequestOptions
+interface StatusOptions feed?: string | undefined
+interface StatusReport
+interface StatusReport feeds: FeedHealth[]
+interface StatusReport ready: boolean
+interface SubscribeOptions
+interface SubscribeOptions benchmarksOnly?: boolean | undefined
+interface SubscribeOptions channel?: Channel | undefined
+interface SubscribeOptions idleTimeoutMs?: number | undefined
+interface SubscribeOptions ignoreInvalid?: boolean | undefined
+interface SubscribeOptions maxMessageBytes?: number | undefined
+interface SubscribeOptions onError?: ((err: AstraError) => void) | undefined
+interface SubscribeOptions onStateChange?: ((state: ConnectionState) => void) | undefined
+interface SubscribeOptions reconnectBaseDelayMs?: number | undefined
+interface SubscribeOptions reconnectMaxDelayMs?: number | undefined
+interface SubscribeOptions signal?: AbortSignal | undefined
+interface SubscribeOptions stableAfterMs?: number | undefined
+interface SubscribeOptions transport?: "ws" | "sse" | undefined
+interface SubscriptionStats
+interface SubscriptionStats coalesced: number
+interface SubscriptionStats connects: number
+interface SubscriptionStats duplicates: number
+interface SubscriptionStats invalid: number
+interface SubscriptionStats reconnects: number
+interface UpdateMetadata
+interface UpdateMetadata prevPublishTime: number
+interface UpdateMetadata receiveTime: number
+interface WebSocketLike
+interface WebSocketLike close(code?: number, reason?: string): void
+interface WebSocketLike onclose: ((ev: { code: number; reason: string; }) => void) | null
+interface WebSocketLike onerror: ((ev: unknown) => void) | null
+interface WebSocketLike onmessage: ((ev: { data: unknown; }) => void) | null
+interface WebSocketLike onopen: ((ev: unknown) => void) | null
+interface WebSocketLike readonly readyState: number
+interface WebSocketLike send(data: string): void
+type Channel | "fixed_rate@1000ms"
+type Channel | "fixed_rate@200ms"
+type Channel | "real_time"
+type ConnectionState | "closed"
+type ConnectionState | "connecting"
+type ConnectionState | "open"
+type ConnectionState | "reconnecting"
+type FeedId = string
+type FeedStatus | "degraded"
+type FeedStatus | "market_closed"
+type FeedStatus | "no_data"
+type FeedStatus | "reference"
+type FeedStatus | "trading"
+type FeedStatus | (string & {})
+type Resolution | "1"
+type Resolution | "15"
+type Resolution | "15m"
+type Resolution | "1D"
+type Resolution | "1d"
+type Resolution | "1h"
+type Resolution | "1m"
+type Resolution | "240"
+type Resolution | "4h"
+type Resolution | "5"
+type Resolution | "5m"
+type Resolution | "60"
+type Resolution | (string & {})
+type WebSocketConstructor = new (url: string) => WebSocketLike

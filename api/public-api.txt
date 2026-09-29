@@ -1,0 +1,1583 @@
+class AveeApiError
+class AveeApiError constructor(init: ApiErrorInit)
+class AveeApiError extends AveeError
+class AveeApiError get retryable(): boolean
+class AveeApiError name: string
+class AveeApiError readonly body: string
+class AveeApiError readonly code: string | undefined
+class AveeApiError readonly detail: string | undefined
+class AveeApiError readonly headers: Headers
+class AveeApiError readonly method: string
+class AveeApiError readonly operation: string
+class AveeApiError readonly paid: boolean
+class AveeApiError readonly param: string | undefined
+class AveeApiError readonly payment: PaymentReceipt | undefined
+class AveeApiError readonly paymentRequired: PaymentRequired | undefined
+class AveeApiError readonly problem: Problem | undefined
+class AveeApiError readonly rateLimit: RateLimit
+class AveeApiError readonly requestId: string | undefined
+class AveeApiError readonly retryAfterMs: number | undefined
+class AveeApiError readonly status: number
+class AveeApiError readonly url: string
+class AveeClient
+class AveeClient constructor(options?: AveeClientOptions)
+class AveeClient extends Operations
+class AveeClient get lastResponse(): ResponseInfo | undefined
+class AveeClient protected call<T>(call: Call, options?: RequestOptions): Promise<T>
+class AveeConnectionError
+class AveeConnectionError extends AveeError
+class AveeConnectionError name: string
+class AveeError
+class AveeError extends Error
+class AveeError name: string
+class AveePaymentError
+class AveePaymentError constructor(message: string, operation: string, paymentRequired?: PaymentRequired, options?: { cause?: unknown; })
+class AveePaymentError extends AveeError
+class AveePaymentError name: string
+class AveePaymentError readonly operation: string
+class AveePaymentError readonly paymentRequired: PaymentRequired | undefined
+class AveeTimeoutError
+class AveeTimeoutError extends AveeError
+class AveeTimeoutError name: string
+class AveeValidationError
+class AveeValidationError extends AveeError
+class AveeValidationError name: string
+class Operations
+class Operations chains(options?: RequestOptions): Promise<m.ChainList>
+class Operations config(options?: RequestOptions): Promise<m.Config>
+class Operations deployerTokens(address: string, params?: DeployerTokensParams, options?: RequestOptions): Promise<m.DeployerLaunchPage>
+class Operations farm(chain: ChainInput, address: string, options?: RequestOptions): Promise<m.FarmInfo>
+class Operations farms(params: FarmsParams, options?: RequestOptions): Promise<m.FarmPage>
+class Operations iterDeployerTokens(address: string, params?: DeployerTokensParams, options?: RequestOptions): AsyncIterable<m.PairInfo>
+class Operations iterFarms(params: FarmsParams, options?: RequestOptions): AsyncIterable<m.FarmInfo>
+class Operations iterLaunchpadTokens(params: LaunchpadTokensParams, options?: RequestOptions): AsyncIterable<m.PairInfo>
+class Operations iterPairTrades(chain: ChainInput, address: string, params?: PairTradesParams, options?: RequestOptions): AsyncIterable<m.Transaction>
+class Operations iterPairs(params?: PairsParams, options?: RequestOptions): AsyncIterable<m.PairInfo>
+class Operations iterPairsNew(params: PairsNewParams, options?: RequestOptions): AsyncIterable<m.PairInfo>
+class Operations iterPerps(params?: PerpsParams, options?: RequestOptions): AsyncIterable<m.PairInfo>
+class Operations iterTokenHolders(chain: ChainInput, address: string, params?: TokenHoldersParams, options?: RequestOptions): AsyncIterable<m.TokenHolder>
+class Operations iterTokenTraders(chain: ChainInput, address: string, params?: TokenTradersParams, options?: RequestOptions): AsyncIterable<m.TokenTrader>
+class Operations iterTokens(params?: TokensParams, options?: RequestOptions): AsyncIterable<m.TokenInfo>
+class Operations iterTrending(params?: TrendingParams, options?: RequestOptions): AsyncIterable<m.PairInfo>
+class Operations iterWalletPositions(chain: ChainInput, address: string, params?: WalletPositionsParams, options?: RequestOptions): AsyncIterable<m.WalletPosition>
+class Operations iterWalletRounds(chain: ChainInput, address: string, params?: WalletRoundsParams, options?: RequestOptions): AsyncIterable<m.WalletPositionRound>
+class Operations iterWalletTrades(chain: ChainInput, address: string, params?: WalletTradesParams, options?: RequestOptions): AsyncIterable<m.WalletTrade>
+class Operations iterWallets(params: WalletsParams, options?: RequestOptions): AsyncIterable<m.WalletListItem>
+class Operations key(options?: RequestOptions): Promise<m.KeyInfo>
+class Operations launchpadTokens(params: LaunchpadTokensParams, options?: RequestOptions): Promise<m.PairPage>
+class Operations leaderboard(params: LeaderboardParams, options?: RequestOptions): Promise<m.Leaderboard>
+class Operations oraclePrices(params: OraclePricesParams, options?: RequestOptions): Promise<m.OraclePriceList>
+class Operations oraclePricesAt(params: OraclePricesAtParams, options?: RequestOptions): Promise<m.OraclePriceList>
+class Operations pair(chain: ChainInput, address: string, options?: RequestOptions): Promise<m.PairInfo>
+class Operations pairBatch(body: m.PairBatchRequest, options?: RequestOptions): Promise<m.PairBatchResponse>
+class Operations pairCandles(chain: ChainInput, address: string, params: PairCandlesParams, options?: RequestOptions): Promise<m.ChartCandles>
+class Operations pairTrades(chain: ChainInput, address: string, params?: PairTradesParams, options?: RequestOptions): Promise<m.TradePage>
+class Operations pairs(params?: PairsParams, options?: RequestOptions): Promise<m.PairPage>
+class Operations pairsNew(params: PairsNewParams, options?: RequestOptions): Promise<m.PairPage>
+class Operations perpHistory(market: string, params?: PerpHistoryParams, options?: RequestOptions): Promise<m.PerpHistory>
+class Operations perpLiquidations(params?: PerpLiquidationsParams, options?: RequestOptions): Promise<m.PerpLiquidations>
+class Operations perps(params?: PerpsParams, options?: RequestOptions): Promise<m.PairPage>
+class Operations protected abstract call<T>(call: Call, options?: RequestOptions): Promise<T>
+class Operations search(params: SearchParams, options?: RequestOptions): Promise<m.SearchResponse>
+class Operations status(options?: RequestOptions): Promise<m.StatusResponse>
+class Operations tokenBatch(body: m.TokenBatchRequest, options?: RequestOptions): Promise<m.TokenBatchResponse>
+class Operations tokenBrief(chain: ChainInput, address: string, options?: RequestOptions): Promise<m.TokenBrief>
+class Operations tokenByAddress(chain: ChainInput, address: string, params?: TokenByAddressParams, options?: RequestOptions): Promise<m.TokenInfo>
+class Operations tokenByID(id: string, params?: TokenByIDParams, options?: RequestOptions): Promise<m.TokenInfo>
+class Operations tokenBySlug(slug: string, params?: TokenBySlugParams, options?: RequestOptions): Promise<m.TokenInfo>
+class Operations tokenHolders(chain: ChainInput, address: string, params?: TokenHoldersParams, options?: RequestOptions): Promise<m.TokenHolderPage>
+class Operations tokenPairs(chain: ChainInput, address: string, params?: TokenPairsParams, options?: RequestOptions): Promise<m.PairPage>
+class Operations tokenTraders(chain: ChainInput, address: string, params?: TokenTradersParams, options?: RequestOptions): Promise<m.TokenTraderPage>
+class Operations tokenVerdict(chain: ChainInput, address: string, options?: RequestOptions): Promise<m.TokenVerdict>
+class Operations tokenVerdictProof(chain: ChainInput, address: string, options?: RequestOptions): Promise<m.TokenVerdictProof>
+class Operations tokens(params?: TokensParams, options?: RequestOptions): Promise<m.TokenPage>
+class Operations trending(params?: TrendingParams, options?: RequestOptions): Promise<m.PairPage>
+class Operations walletBestTrades(chain: ChainInput, address: string, params?: WalletBestTradesParams, options?: RequestOptions): Promise<m.WalletBestTrades>
+class Operations walletChart(chain: ChainInput, address: string, params?: WalletChartParams, options?: RequestOptions): Promise<m.WalletChart>
+class Operations walletFunding(chain: ChainInput, address: string, options?: RequestOptions): Promise<m.WalletFunding>
+class Operations walletLabelsBatch(body: m.WalletLabelsRequest, options?: RequestOptions): Promise<m.WalletLabelList>
+class Operations walletOverview(address: string, params?: WalletOverviewParams, options?: RequestOptions): Promise<m.WalletOverview>
+class Operations walletPositions(chain: ChainInput, address: string, params?: WalletPositionsParams, options?: RequestOptions): Promise<m.WalletPositionPage>
+class Operations walletProfile(chain: ChainInput, address: string, options?: RequestOptions): Promise<m.WalletProfile>
+class Operations walletRounds(chain: ChainInput, address: string, params?: WalletRoundsParams, options?: RequestOptions): Promise<m.WalletRoundPage>
+class Operations walletStats(params?: WalletStatsParams, options?: RequestOptions): Promise<m.WalletStats>
+class Operations walletTrades(chain: ChainInput, address: string, params?: WalletTradesParams, options?: RequestOptions): Promise<m.WalletTradePage>
+class Operations wallets(params: WalletsParams, options?: RequestOptions): Promise<m.WalletPage>
+class Operations x402Discovery(options?: RequestOptions): Promise<m.X402Discovery>
+const CanonicalTokenStatus: { readonly Unknown: "unknown"; readonly Community: "community"; readonly Verified: "verified"; readonly Scam: "scam"; readonly Honeypot: "honeypot"; readonly Delisted: "delisted"; }
+const DEFAULT_BASE_URL: unknown
+const ErrorCode: { readonly InvalidApiKey: "invalid_api_key"; readonly KeyInQuery: "key_in_query"; readonly PlanRequired: "plan_required"; readonly RateLimited: "rate_limited"; readonly ChainNotFound: "chain_not_found"; readonly NotFound: "not_found"; readonly InvalidParam: "invalid_param"; readonly UpstreamUnavailable: "upstream_unavailable"; readonly UpstreamTimeout: "upstream_timeout"; readonly Internal: "internal"; }
+const FactoryType: { readonly CurveV2: "curveV2"; readonly StonfiV1: "stonfiV1"; readonly StonfiV2: "stonfiV2"; readonly DedustV1: "dedustV1"; readonly DedustV2: "dedustV2"; readonly UranusV1: "uranusV1"; readonly BalancerV2: "balancerV2"; readonly UniswapV2: "uniswapV2"; readonly UniswapV3: "uniswapV3"; readonly UniswapV4: "uniswapV4"; readonly Hyperliquid: "hyperliquid"; }
+const FarmSortBy: { readonly Tvl: "tvl"; readonly Apr: "apr"; readonly UpdatedAt: "updated_at"; }
+const FarmStatus: { readonly Unverified: "unverified"; readonly Verified: "verified"; }
+const LaunchStatus: { readonly New: "new"; readonly Bonding: "bonding"; readonly Graduated: "graduated"; }
+const LeaderboardScope: { readonly Chains: "chains"; readonly Protocols: "protocols"; }
+const MarketType: { readonly Any: "any"; readonly Spot: "spot"; readonly Perp: "perp"; }
+const OPERATIONS item { readonly id: "chains"; readonly method: "GET"; readonly path: "/chains"; readonly tag: "meta"; }
+const OPERATIONS item { readonly id: "config"; readonly method: "GET"; readonly path: "/config"; readonly tag: "meta"; }
+const OPERATIONS item { readonly id: "deployerTokens"; readonly method: "GET"; readonly path: "/deployers/{address}/tokens"; readonly tag: "dex"; }
+const OPERATIONS item { readonly id: "farm"; readonly method: "GET"; readonly path: "/chains/{chain}/farms/{address}"; readonly tag: "farm"; }
+const OPERATIONS item { readonly id: "farms"; readonly method: "GET"; readonly path: "/farms"; readonly tag: "farm"; }
+const OPERATIONS item { readonly id: "key"; readonly method: "GET"; readonly path: "/key"; readonly tag: "meta"; }
+const OPERATIONS item { readonly id: "launchpadTokens"; readonly method: "GET"; readonly path: "/launchpads/tokens"; readonly tag: "dex"; }
+const OPERATIONS item { readonly id: "leaderboard"; readonly method: "GET"; readonly path: "/leaderboard"; readonly tag: "wallet"; }
+const OPERATIONS item { readonly id: "oraclePrices"; readonly method: "GET"; readonly path: "/prices"; readonly tag: "oracle"; }
+const OPERATIONS item { readonly id: "oraclePricesAt"; readonly method: "GET"; readonly path: "/prices/at"; readonly tag: "oracle"; }
+const OPERATIONS item { readonly id: "pair"; readonly method: "GET"; readonly path: "/chains/{chain}/pairs/{address}"; readonly tag: "dex"; }
+const OPERATIONS item { readonly id: "pairBatch"; readonly method: "POST"; readonly path: "/pairs/batch"; readonly tag: "dex"; }
+const OPERATIONS item { readonly id: "pairCandles"; readonly method: "GET"; readonly path: "/chains/{chain}/pairs/{address}/candles"; readonly tag: "dex"; }
+const OPERATIONS item { readonly id: "pairTrades"; readonly method: "GET"; readonly path: "/chains/{chain}/pairs/{address}/trades"; readonly tag: "dex"; }
+const OPERATIONS item { readonly id: "pairs"; readonly method: "GET"; readonly path: "/pairs"; readonly tag: "dex"; }
+const OPERATIONS item { readonly id: "pairsNew"; readonly method: "GET"; readonly path: "/pairs/new"; readonly tag: "dex"; }
+const OPERATIONS item { readonly id: "perpHistory"; readonly method: "GET"; readonly path: "/perps/{market}/history"; readonly tag: "dex"; }
+const OPERATIONS item { readonly id: "perpLiquidations"; readonly method: "GET"; readonly path: "/perps/liquidations"; readonly tag: "dex"; }
+const OPERATIONS item { readonly id: "perps"; readonly method: "GET"; readonly path: "/perps"; readonly tag: "dex"; }
+const OPERATIONS item { readonly id: "search"; readonly method: "GET"; readonly path: "/search"; readonly tag: "dex"; }
+const OPERATIONS item { readonly id: "status"; readonly method: "GET"; readonly path: "/status"; readonly tag: "meta"; }
+const OPERATIONS item { readonly id: "tokenBatch"; readonly method: "POST"; readonly path: "/tokens/batch"; readonly tag: "token"; }
+const OPERATIONS item { readonly id: "tokenBrief"; readonly method: "GET"; readonly path: "/chains/{chain}/tokens/{address}/brief"; readonly tag: "token"; }
+const OPERATIONS item { readonly id: "tokenByAddress"; readonly method: "GET"; readonly path: "/chains/{chain}/tokens/{address}"; readonly tag: "token"; }
+const OPERATIONS item { readonly id: "tokenByID"; readonly method: "GET"; readonly path: "/tokens/{id}"; readonly tag: "token"; }
+const OPERATIONS item { readonly id: "tokenBySlug"; readonly method: "GET"; readonly path: "/tokens/by-slug/{slug}"; readonly tag: "token"; }
+const OPERATIONS item { readonly id: "tokenHolders"; readonly method: "GET"; readonly path: "/chains/{chain}/tokens/{address}/holders"; readonly tag: "token"; }
+const OPERATIONS item { readonly id: "tokenPairs"; readonly method: "GET"; readonly path: "/chains/{chain}/tokens/{address}/pairs"; readonly tag: "token"; }
+const OPERATIONS item { readonly id: "tokenTraders"; readonly method: "GET"; readonly path: "/chains/{chain}/tokens/{address}/traders"; readonly tag: "token"; }
+const OPERATIONS item { readonly id: "tokenVerdict"; readonly method: "GET"; readonly path: "/chains/{chain}/tokens/{address}/verdict"; readonly tag: "token"; }
+const OPERATIONS item { readonly id: "tokenVerdictProof"; readonly method: "GET"; readonly path: "/chains/{chain}/tokens/{address}/proof"; readonly tag: "token"; }
+const OPERATIONS item { readonly id: "tokens"; readonly method: "GET"; readonly path: "/tokens"; readonly tag: "token"; }
+const OPERATIONS item { readonly id: "trending"; readonly method: "GET"; readonly path: "/trending"; readonly tag: "dex"; }
+const OPERATIONS item { readonly id: "walletBestTrades"; readonly method: "GET"; readonly path: "/chains/{chain}/wallets/{address}/best-trades"; readonly tag: "wallet"; }
+const OPERATIONS item { readonly id: "walletChart"; readonly method: "GET"; readonly path: "/chains/{chain}/wallets/{address}/chart"; readonly tag: "wallet"; }
+const OPERATIONS item { readonly id: "walletFunding"; readonly method: "GET"; readonly path: "/chains/{chain}/wallets/{address}/funding"; readonly tag: "wallet"; }
+const OPERATIONS item { readonly id: "walletLabelsBatch"; readonly method: "POST"; readonly path: "/wallets/labels/batch"; readonly tag: "wallet"; }
+const OPERATIONS item { readonly id: "walletOverview"; readonly method: "GET"; readonly path: "/wallets/{address}/overview"; readonly tag: "wallet"; }
+const OPERATIONS item { readonly id: "walletPositions"; readonly method: "GET"; readonly path: "/chains/{chain}/wallets/{address}/positions"; readonly tag: "wallet"; }
+const OPERATIONS item { readonly id: "walletProfile"; readonly method: "GET"; readonly path: "/chains/{chain}/wallets/{address}"; readonly tag: "wallet"; }
+const OPERATIONS item { readonly id: "walletRounds"; readonly method: "GET"; readonly path: "/chains/{chain}/wallets/{address}/rounds"; readonly tag: "wallet"; }
+const OPERATIONS item { readonly id: "walletStats"; readonly method: "GET"; readonly path: "/wallets/stats"; readonly tag: "wallet"; }
+const OPERATIONS item { readonly id: "walletTrades"; readonly method: "GET"; readonly path: "/chains/{chain}/wallets/{address}/trades"; readonly tag: "wallet"; }
+const OPERATIONS item { readonly id: "wallets"; readonly method: "GET"; readonly path: "/wallets"; readonly tag: "wallet"; }
+const OPERATIONS item { readonly id: "x402Discovery"; readonly method: "GET"; readonly path: "/.well-known/x402"; readonly tag: "meta"; }
+const OrderBy: { readonly Asc: "asc"; readonly Desc: "desc"; }
+const PREVIEW_BASE_URL: unknown
+const PairStatus: { readonly Active: "active"; readonly Verified: "verified"; readonly Unresolved: "unresolved"; readonly Scam: "scam"; }
+const PerpSortBy: { readonly Volume: "volume"; readonly Transactions: "transactions"; readonly PriceChange: "price_change"; readonly Trending: "trending"; readonly CreatedAt: "created_at"; }
+const Plan: { readonly Free: "free"; readonly Startup: "startup"; readonly Unicorn: "unicorn"; readonly Enterprise: "enterprise"; }
+const PositionSortBy: { readonly Token: "token"; readonly RealizedPnl: "realized_pnl"; readonly UnrealizedPnl: "unrealized_pnl"; readonly Hold: "hold"; }
+const PositionState: { readonly Any: "any"; readonly Open: "open"; readonly Closed: "closed"; }
+const ReasonSlug: { readonly Honeypot: "honeypot"; readonly UnresolvedMetadata: "unresolved_metadata"; readonly DuplicateSymbol: "duplicate_symbol"; readonly LpUnlocked: "lp_unlocked"; readonly OwnerCanMint: "owner_can_mint"; readonly SellBlocked: "sell_blocked"; readonly HighTax: "high_tax"; readonly DeployerRug: "deployer_rug"; }
+const ResolutionType: { readonly N1: "1"; readonly N3: "3"; readonly N5: "5"; readonly N15: "15"; readonly N30: "30"; readonly N45: "45"; readonly H1: "1H"; readonly H2: "2H"; readonly H4: "4H"; readonly H6: "6H"; readonly H12: "12H"; readonly D1: "1D"; readonly W1: "1W"; readonly M1: "1M"; readonly M6: "6M"; readonly Y1: "1Y"; }
+const RiskSignalGroup: { readonly CannotExit: "cannot_exit"; readonly CanBeSeized: "can_be_seized"; readonly ExitIsTaxed: "exit_is_taxed"; readonly LiquidityCanLeave: "liquidity_can_leave"; readonly OperatorRecord: "operator_record"; readonly Unverified: "unverified"; }
+const RiskSignalSeverity: { readonly Critical: "critical"; readonly Warning: "warning"; readonly Info: "info"; }
+const SortBy: { readonly Liquidity: "liquidity"; readonly UpdatedAt: "updated_at"; readonly CreatedAt: "created_at"; readonly Score: "score"; readonly Popular: "popular"; readonly Hottest: "hottest"; readonly Trending: "trending"; readonly Volume: "volume"; readonly Transactions: "transactions"; readonly PriceChange: "price_change"; readonly Apr: "apr"; }
+const TimeFrame: { readonly M5: "5m"; readonly H1: "1h"; readonly H6: "6h"; readonly H24: "24h"; }
+const TokenCategory: { readonly Unknown: "unknown"; readonly Native: "native"; readonly Default: "default"; readonly StablecoinUsd: "stablecoin-usd"; readonly Wrapped: "wrapped"; readonly Meme: "meme"; }
+const TokenSortBy: { readonly MarketCap: "market_cap"; readonly Volume: "volume"; readonly Liquidity: "liquidity"; readonly PriceChange: "price_change"; readonly CreatedAt: "created_at"; readonly Holders: "holders"; readonly Rating: "rating"; readonly Fdv: "fdv"; readonly Txns: "txns"; }
+const TokenStatus: { readonly Active: "active"; readonly Verified: "verified"; readonly Unresolved: "unresolved"; readonly Scam: "scam"; }
+const TokenTraderSortBy: { readonly RealizedPnl: "realized_pnl"; readonly Bought: "bought"; readonly Holding: "holding"; }
+const TxType: { readonly All: "all"; readonly Buy: "buy"; readonly Sell: "sell"; readonly Mint: "mint"; readonly Burn: "burn"; readonly AddLiquidity: "add_liquidity"; readonly RemoveLiquidity: "remove_liquidity"; }
+const VerdictStatus: { readonly Ok: "ok"; readonly Watch: "watch"; readonly Blocked: "blocked"; readonly Unknown: "unknown"; }
+const WalletSortBy: { readonly TotalPnl: "total_pnl"; readonly RealizedPnl: "realized_pnl"; readonly Volume: "volume"; readonly WinRate: "win_rate"; readonly Trades: "trades"; readonly UserScore: "user_score"; }
+const WalletType: { readonly Unknown: "unknown"; readonly Human: "human"; readonly Robot: "robot"; }
+const WalletWindow: { readonly D1: "1d"; readonly D7: "7d"; readonly D30: "30d"; readonly Y1: "1y"; readonly All: "all"; }
+function paginate<T>(fetchPage: (cursor: string | undefined) => Promise<{ items: T[]; next_cursor?: string | undefined; }>, start: string | undefined, maxPages: number | undefined): AsyncGenerator<T, void, undefined>
+interface AveeClientOptions
+interface AveeClientOptions apiKey?: string | undefined
+interface AveeClientOptions baseUrl?: string | undefined
+interface AveeClientOptions fetch?: typeof fetch | undefined
+interface AveeClientOptions headers?: Record<string, string> | undefined
+interface AveeClientOptions maxResponseBytes?: number | undefined
+interface AveeClientOptions maxRetries?: number | undefined
+interface AveeClientOptions maxRetryDelayMs?: number | undefined
+interface AveeClientOptions payer?: Payer | undefined
+interface AveeClientOptions timeoutMs?: number | undefined
+interface DeployerTokensParams
+interface DeployerTokensParams chains?: m.ChainSlug[] | undefined
+interface DeployerTokensParams cursor?: string | undefined
+interface DeployerTokensParams limit?: number | undefined
+interface FarmsParams
+interface FarmsParams chains: m.ChainSlug[]
+interface FarmsParams cursor?: string | undefined
+interface FarmsParams factories?: m.Address[] | undefined
+interface FarmsParams limit?: number | undefined
+interface FarmsParams order?: m.OrderBy | undefined
+interface FarmsParams q?: string | undefined
+interface FarmsParams sort?: m.FarmSortBy | undefined
+interface LaunchpadTokensParams
+interface LaunchpadTokensParams chain: string
+interface LaunchpadTokensParams cursor?: string | undefined
+interface LaunchpadTokensParams launch_status?: m.LaunchStatus | undefined
+interface LaunchpadTokensParams launchpads?: string[] | undefined
+interface LaunchpadTokensParams limit?: number | undefined
+interface LeaderboardParams
+interface LeaderboardParams chain?: string | undefined
+interface LeaderboardParams chains?: m.ChainSlug[] | undefined
+interface LeaderboardParams limit?: number | undefined
+interface LeaderboardParams scope: m.LeaderboardScope
+interface LeaderboardParams season?: number | undefined
+interface LeaderboardParams seasonal?: boolean | undefined
+interface OraclePricesAtParams
+interface OraclePricesAtParams ids: string[]
+interface OraclePricesAtParams ts: number
+interface OraclePricesParams
+interface OraclePricesParams ids: string[]
+interface PairCandlesParams
+interface PairCandlesParams countback?: number | undefined
+interface PairCandlesParams currency?: "usd" | "native" | (string & {}) | undefined
+interface PairCandlesParams from: number
+interface PairCandlesParams price_from_quote?: boolean | undefined
+interface PairCandlesParams res: m.ResolutionType
+interface PairCandlesParams to: number
+interface PairCandlesParams volume_from_quote?: boolean | undefined
+interface PairTradesParams
+interface PairTradesParams cursor?: string | undefined
+interface PairTradesParams from?: number | undefined
+interface PairTradesParams limit?: number | undefined
+interface PairTradesParams maker?: m.Address | undefined
+interface PairTradesParams order?: m.OrderBy | undefined
+interface PairTradesParams to?: number | undefined
+interface PairTradesParams tx_type?: m.TxType[] | undefined
+interface PairsNewParams
+interface PairsNewParams chain: string
+interface PairsNewParams cursor?: string | undefined
+interface PairsNewParams limit?: number | undefined
+interface PairsNewParams max_age_seconds?: number | undefined
+interface PairsNewParams min_liquidity_usd?: number | undefined
+interface PairsParams
+interface PairsParams chains?: m.ChainSlug[] | undefined
+interface PairsParams cursor?: string | undefined
+interface PairsParams dex_names?: string[] | undefined
+interface PairsParams limit?: number | undefined
+interface PairsParams market_type?: m.MarketType | undefined
+interface PairsParams max_age_seconds?: number | undefined
+interface PairsParams max_apr?: number | undefined
+interface PairsParams max_deployed_pairs?: number | undefined
+interface PairsParams max_liquidity_usd?: number | undefined
+interface PairsParams max_score?: number | undefined
+interface PairsParams min_age_seconds?: number | undefined
+interface PairsParams min_apr?: number | undefined
+interface PairsParams min_liquidity_usd?: number | undefined
+interface PairsParams min_score?: number | undefined
+interface PairsParams only_trustable?: boolean | undefined
+interface PairsParams order?: m.OrderBy | undefined
+interface PairsParams protocols?: m.FactoryType[] | undefined
+interface PairsParams q?: string | undefined
+interface PairsParams sort?: m.SortBy | undefined
+interface PairsParams timeframe?: m.TimeFrame | undefined
+interface Payer
+interface Payer networks?: readonly string[] | undefined
+interface Payer sign(context: PaymentContext): Promise<PaymentSignature | null | undefined> | PaymentSignature | null | undefined
+interface PaymentContext
+interface PaymentContext method: string
+interface PaymentContext operation: string
+interface PaymentContext paymentId: string
+interface PaymentContext required: PaymentRequired
+interface PaymentContext requirement: PaymentRequirements
+interface PaymentContext url: string
+interface PaymentReceipt
+interface PaymentReceipt errorReason?: string | undefined
+interface PaymentReceipt network: string
+interface PaymentReceipt payer?: string | undefined
+interface PaymentReceipt success: boolean
+interface PaymentReceipt transaction: string
+interface PerpHistoryParams
+interface PerpHistoryParams chain?: string | undefined
+interface PerpHistoryParams from?: number | undefined
+interface PerpHistoryParams interval?: "5m" | "1h" | (string & {}) | undefined
+interface PerpHistoryParams to?: number | undefined
+interface PerpLiquidationsParams
+interface PerpLiquidationsParams chain?: string | undefined
+interface PerpLiquidationsParams from?: number | undefined
+interface PerpLiquidationsParams market?: m.Address | undefined
+interface PerpLiquidationsParams to?: number | undefined
+interface PerpsParams
+interface PerpsParams chains?: m.ChainSlug[] | undefined
+interface PerpsParams cursor?: string | undefined
+interface PerpsParams limit?: number | undefined
+interface PerpsParams order?: m.OrderBy | undefined
+interface PerpsParams q?: string | undefined
+interface PerpsParams sort?: m.PerpSortBy | undefined
+interface PerpsParams timeframe?: m.TimeFrame | undefined
+interface RateLimit
+interface RateLimit limit?: number | undefined
+interface RateLimit policy?: string | undefined
+interface RateLimit remaining?: number | undefined
+interface RateLimit resetSeconds?: number | undefined
+interface RateLimit retryAfterSeconds?: number | undefined
+interface RequestOptions
+interface RequestOptions maxPages?: number | undefined
+interface RequestOptions signal?: AbortSignal | undefined
+interface ResponseInfo
+interface ResponseInfo operation: string
+interface ResponseInfo payment: PaymentReceipt | undefined
+interface ResponseInfo rateLimit: RateLimit
+interface ResponseInfo requestId: string | undefined
+interface ResponseInfo status: number
+interface SearchParams
+interface SearchParams chains?: m.ChainSlug[] | undefined
+interface SearchParams limit?: number | undefined
+interface SearchParams q: string
+interface TokenByAddressParams
+interface TokenByAddressParams include_instances?: boolean | undefined
+interface TokenByAddressParams include_market?: boolean | undefined
+interface TokenByIDParams
+interface TokenByIDParams include_instances?: boolean | undefined
+interface TokenByIDParams include_market?: boolean | undefined
+interface TokenBySlugParams
+interface TokenBySlugParams include_instances?: boolean | undefined
+interface TokenBySlugParams include_market?: boolean | undefined
+interface TokenHoldersParams
+interface TokenHoldersParams cursor?: string | undefined
+interface TokenHoldersParams limit?: number | undefined
+interface TokenPairsParams
+interface TokenPairsParams limit?: number | undefined
+interface TokenTradersParams
+interface TokenTradersParams cursor?: string | undefined
+interface TokenTradersParams limit?: number | undefined
+interface TokenTradersParams sort?: m.TokenTraderSortBy | undefined
+interface TokenTradersParams state?: m.PositionState | undefined
+interface TokensParams
+interface TokensParams categories?: string[] | undefined
+interface TokensParams chains?: m.ChainSlug[] | undefined
+interface TokensParams cursor?: string | undefined
+interface TokensParams include_instances?: boolean | undefined
+interface TokensParams include_market?: boolean | undefined
+interface TokensParams limit?: number | undefined
+interface TokensParams max_age_seconds?: number | undefined
+interface TokensParams max_fdv_usd?: number | undefined
+interface TokensParams max_holders?: number | undefined
+interface TokensParams max_liquidity_usd?: number | undefined
+interface TokensParams max_market_cap_usd?: number | undefined
+interface TokensParams max_score?: number | undefined
+interface TokensParams max_volume_usd?: number | undefined
+interface TokensParams min_age_seconds?: number | undefined
+interface TokensParams min_fdv_usd?: number | undefined
+interface TokensParams min_holders?: number | undefined
+interface TokensParams min_liquidity_usd?: number | undefined
+interface TokensParams min_market_cap_usd?: number | undefined
+interface TokensParams min_score?: number | undefined
+interface TokensParams min_volume_usd?: number | undefined
+interface TokensParams order?: m.OrderBy | undefined
+interface TokensParams q?: string | undefined
+interface TokensParams sort?: m.TokenSortBy | undefined
+interface TrendingParams
+interface TrendingParams chains?: m.ChainSlug[] | undefined
+interface TrendingParams cursor?: string | undefined
+interface TrendingParams limit?: number | undefined
+interface WalletBestTradesParams
+interface WalletBestTradesParams limit?: number | undefined
+interface WalletBestTradesParams window?: m.WalletWindow | undefined
+interface WalletChartParams
+interface WalletChartParams window?: m.WalletWindow | undefined
+interface WalletOverviewParams
+interface WalletOverviewParams chains?: m.ChainSlug[] | undefined
+interface WalletOverviewParams window?: m.WalletWindow | undefined
+interface WalletPositionsParams
+interface WalletPositionsParams cursor?: string | undefined
+interface WalletPositionsParams limit?: number | undefined
+interface WalletPositionsParams sort?: m.PositionSortBy | undefined
+interface WalletPositionsParams state?: m.PositionState | undefined
+interface WalletRoundsParams
+interface WalletRoundsParams cursor?: string | undefined
+interface WalletRoundsParams limit?: number | undefined
+interface WalletRoundsParams state?: m.PositionState | undefined
+interface WalletRoundsParams token?: m.Address | undefined
+interface WalletStatsParams
+interface WalletStatsParams chains?: m.ChainSlug[] | undefined
+interface WalletTradesParams
+interface WalletTradesParams cursor?: string | undefined
+interface WalletTradesParams limit?: number | undefined
+interface WalletsParams
+interface WalletsParams chain: string
+interface WalletsParams cursor?: string | undefined
+interface WalletsParams exclude_bots?: boolean | undefined
+interface WalletsParams limit?: number | undefined
+interface WalletsParams max_avg_hold_seconds?: number | undefined
+interface WalletsParams min_realized_pnl_usd?: number | undefined
+interface WalletsParams min_total_pnl_usd?: number | undefined
+interface WalletsParams min_trades?: number | undefined
+interface WalletsParams min_user_score?: number | undefined
+interface WalletsParams min_volume_usd?: number | undefined
+interface WalletsParams min_win_rate?: number | undefined
+interface WalletsParams no_abuse_evidence?: boolean | undefined
+interface WalletsParams only_copy_eligible?: boolean | undefined
+interface WalletsParams order?: m.OrderBy | undefined
+interface WalletsParams sort?: m.WalletSortBy | undefined
+interface WalletsParams tiers?: m.WalletTier[] | undefined
+interface WalletsParams window?: m.WalletWindow | undefined
+model BriefDeployer
+model BriefDeployer address: Address
+model BriefDeployer launches: number
+model BriefDeployer rugs: number
+model BriefDeployer status: DeployerStatus
+model BriefHolders
+model BriefHolders count: number
+model BriefHolders top10_pct: number
+model BriefLiquidity
+model BriefLiquidity burned_pct: number
+model BriefLiquidity earliest_unlock_at?: string
+model BriefLiquidity locked_pct: number
+model BriefLiquidity onchain_usd: number
+model BriefLiquidity usd: number
+model BriefMarket
+model BriefMarket best_pair: Address
+model BriefMarket change_24h: number
+model BriefMarket dex: string
+model BriefMarket price_usd: number
+model BriefMarket trades_24h: number
+model BriefMarket volume_24h: number
+model BriefScore
+model BriefScore signals: BriefSignal[]
+model BriefScore title: string
+model BriefScore value: number
+model BriefSignal
+model BriefSignal kind: RiskSignalKind
+model BriefSignal weight: number
+model ChainInfo
+model ChainInfo block_lag_seconds: number
+model ChainInfo chain_id: number
+model ChainInfo deployer_abusers?: number
+model ChainInfo deployers_total?: number
+model ChainInfo dex_names?: string[]
+model ChainInfo display_name?: string
+model ChainInfo explorer_url?: string
+model ChainInfo gainer?: ChainMover
+model ChainInfo head_block?: number
+model ChainInfo latest_block: number
+model ChainInfo liquidity_usd?: number
+model ChainInfo loser?: ChainMover
+model ChainInfo metrics_stale?: boolean
+model ChainInfo min_liquidity_usd?: number
+model ChainInfo native_address_format?: "evm_hex" | "raw" | (string & {})
+model ChainInfo new_deployers_24h?: number
+model ChainInfo new_pairs_24h?: number
+model ChainInfo new_pairs_24h_total?: number
+model ChainInfo pairs?: number
+model ChainInfo protocols: FactoryType[]
+model ChainInfo quality_liquidity_usd?: number
+model ChainInfo scams_24h?: number
+model ChainInfo scams_inherited?: number
+model ChainInfo scams_on_pool?: number
+model ChainInfo scams_total?: number
+model ChainInfo slug: ChainSlug
+model ChainInfo syncing?: boolean
+model ChainInfo txns_24h?: number
+model ChainInfo volume_24h_usd?: number
+model ChainList
+model ChainList items: ChainInfo[]
+model ChainMover
+model ChainMover pair_address: Address
+model ChainMover ticker: string
+model ChainMover value: number
+model ChainRef
+model ChainRef chain_id: number
+model ChainRef slug: ChainSlug
+model ChainWalletStats
+model ChainWalletStats active_wallets_24h?: number
+model ChainWalletStats bot_wallets?: number
+model ChainWalletStats chain: ChainRef
+model ChainWalletStats copy_eligible?: number
+model ChainWalletStats favorite_token_24h?: TokenMover
+model ChainWalletStats human_wallets?: number
+model ChainWalletStats losing_wallets_24h?: number
+model ChainWalletStats new_wallets_24h?: number
+model ChainWalletStats profitable_wallets_24h?: number
+model ChainWalletStats realized_pnl_24h?: number
+model ChainWalletStats scammers_24h?: number
+model ChainWalletStats scammers_total?: number
+model ChainWalletStats snipers?: number
+model ChainWalletStats top_gainer_24h?: WalletMover
+model ChainWalletStats top_loser_24h?: WalletMover
+model ChainWalletStats trades_24h?: number
+model ChainWalletStats volume_24h?: number
+model ChainWalletStats wallets_total?: number
+model ChainWalletStats wash_traders?: number
+model ChartCandles
+model ChartCandles c: number[]
+model ChartCandles err_msg?: string
+model ChartCandles h: number[]
+model ChartCandles l: number[]
+model ChartCandles o: number[]
+model ChartCandles s: "ok" | "error" | "no_data" | (string & {})
+model ChartCandles t: number[]
+model ChartCandles v: number[]
+model Config
+model Config chains: ChainInfo[]
+model Config min_liquidity_usd: number
+model Config resolutions: ResolutionType[]
+model Config sort_options: SortBy[]
+model Config timeframes: TimeFrame[]
+model Config tx_types: TxType[]
+model DeployerCard
+model DeployerCard address: Address
+model DeployerCard chains: ChainSlug[]
+model DeployerCard first_launch_at?: string
+model DeployerCard last_launch_at?: string
+model DeployerCard pairs_honeypot: number
+model DeployerCard pairs_rugged: number
+model DeployerCard pairs_scam: number
+model DeployerCard pairs_total: number
+model DeployerCard reputation?: DeployerReputation
+model DeployerLaunchPage
+model DeployerLaunchPage deployer?: DeployerCard
+model DeployerLaunchPage items: PairInfo[]
+model DeployerLaunchPage next_cursor?: string
+model DeployerLaunchPage prev_cursor?: string
+model DeployerReputation
+model DeployerReputation abused_launches?: number
+model DeployerReputation first_seen_at?: string
+model DeployerReputation pairs_created?: number
+model DeployerReputation score: number
+model DeployerReputation status: DeployerStatus
+model Dex
+model Dex chain_id: number
+model Dex factory: Address
+model Dex factory_type?: FactoryType
+model Dex lp_token_symbol: string
+model Dex name: string
+model EthereumTxData
+model EthereumTxData block_number: number
+model EthereumTxData fee_usd: number
+model EthereumTxData gas_used: number
+model EthereumTxData log_index: number
+model FarmApr
+model FarmApr base_apr: DecimalString
+model FarmApr lp_reward_apr: DecimalString
+model FarmFactory
+model FarmFactory address: Address
+model FarmFactory name: string
+model FarmInfo
+model FarmInfo address: Address
+model FarmInfo apr_daily: FarmApr
+model FarmInfo apr_year: FarmApr
+model FarmInfo data_quality_flags?: string[]
+model FarmInfo factory?: FarmFactory
+model FarmInfo lifecycle_state?: string
+model FarmInfo network: ChainRef
+model FarmInfo pid: number
+model FarmInfo reward_token: FarmRewardToken
+model FarmInfo status: FarmStatus
+model FarmInfo ticker: string
+model FarmInfo tvl: DecimalString
+model FarmInfo updated_at: string
+model FarmPage
+model FarmPage items: FarmInfo[]
+model FarmPage next_cursor?: string
+model FarmPage prev_cursor?: string
+model FarmRewardToken
+model FarmRewardToken address: Address
+model FarmRewardToken chain_id: number
+model FarmRewardToken name: string
+model FarmRewardToken symbol: string
+model FloatTimeframes
+model FloatTimeframes h1: number
+model FloatTimeframes h24: number
+model FloatTimeframes h6: number
+model FloatTimeframes m5: number
+model KeyInfo
+model KeyInfo max_limit?: number
+model KeyInfo name: string
+model KeyInfo plan: Plan
+model KeyInfo rate_limit: KeyInfoRateLimit
+model KeyInfoRateLimit
+model KeyInfoRateLimit burst: number
+model KeyInfoRateLimit max_concurrent_requests?: number
+model KeyInfoRateLimit requests_per_second: number
+model Leaderboard
+model Leaderboard excluded?: LeaderboardEntity[]
+model Leaderboard items: LeaderboardEntity[]
+model Leaderboard methodology_version?: number
+model Leaderboard population?: number
+model Leaderboard scope: LeaderboardScope
+model Leaderboard season?: LeaderboardSeason
+model Leaderboard snapshot_at?: string
+model LeaderboardEntity
+model LeaderboardEntity badges?: string[]
+model LeaderboardEntity category?: string
+model LeaderboardEntity chain?: ChainRef
+model LeaderboardEntity data_state?: string
+model LeaderboardEntity dimensions?: Record<string, number>
+model LeaderboardEntity display_name?: string
+model LeaderboardEntity exclusion_reason?: string
+model LeaderboardEntity infra?: string[]
+model LeaderboardEntity key: string
+model LeaderboardEntity metrics?: LeaderboardMetrics
+model LeaderboardEntity rank?: number
+model LeaderboardEntity rank_change_24h?: number
+model LeaderboardEntity season_metrics?: LeaderboardSeasonMetrics
+model LeaderboardGrowth
+model LeaderboardGrowth available?: boolean
+model LeaderboardGrowth liquidity?: number
+model LeaderboardGrowth reason?: string
+model LeaderboardGrowth volume?: number
+model LeaderboardMetrics
+model LeaderboardMetrics active_pairs?: number
+model LeaderboardMetrics buy_volume_24h?: number
+model LeaderboardMetrics buyers_24h?: number
+model LeaderboardMetrics capital_efficiency?: number
+model LeaderboardMetrics growth_24h?: LeaderboardGrowth
+model LeaderboardMetrics growth_7d?: LeaderboardGrowth
+model LeaderboardMetrics has_capital_efficiency?: boolean
+model LeaderboardMetrics hosted_volume_24h?: number
+model LeaderboardMetrics liquidity?: number
+model LeaderboardMetrics liquidity_coverage?: number
+model LeaderboardMetrics liquidity_share?: number
+model LeaderboardMetrics new_pairs_24h?: number
+model LeaderboardMetrics pairs?: number
+model LeaderboardMetrics priced_pairs?: number
+model LeaderboardMetrics quality_liquidity?: number
+model LeaderboardMetrics risk_rate?: number
+model LeaderboardMetrics scam_pairs?: number
+model LeaderboardMetrics smoothed_risk?: number
+model LeaderboardMetrics tradable_pairs?: number
+model LeaderboardMetrics txns_24h?: number
+model LeaderboardMetrics volume_24h?: number
+model LeaderboardMetrics volume_share?: number
+model LeaderboardMetrics wash_rate?: number
+model LeaderboardSeason
+model LeaderboardSeason ends_at?: string
+model LeaderboardSeason latest?: number
+model LeaderboardSeason length_days?: number
+model LeaderboardSeason live?: boolean
+model LeaderboardSeason number?: number
+model LeaderboardSeason starts_at?: string
+model LeaderboardSeasonMetrics
+model LeaderboardSeasonMetrics buy_volume?: number
+model LeaderboardSeasonMetrics buyers?: number
+model LeaderboardSeasonMetrics liquidity_last?: number
+model LeaderboardSeasonMetrics liquidity_peak?: number
+model LeaderboardSeasonMetrics new_pairs?: number
+model LeaderboardSeasonMetrics quality_liquidity?: number
+model LeaderboardSeasonMetrics txns?: number
+model LeaderboardSeasonMetrics volume?: number
+model LiquidationDay
+model LiquidationDay day: string
+model LiquidationDay liquidated_long_usd: number
+model LiquidationDay liquidated_short_usd: number
+model LiquidationDay long_count: number
+model LiquidationDay max_liquidation_usd: number
+model LiquidationDay short_count: number
+model LiquidityEventData
+model LiquidityEventData liquidity_usd?: number
+model LiquidityEventData tokens: LiquidityTokenChange[]
+model LiquidityTokenChange
+model LiquidityTokenChange address: Address
+model LiquidityTokenChange amount: number
+model LiquidityTokenChange price_usd: number
+model LiquidityTokenChange symbol?: string
+model OraclePrice
+model OraclePrice conf: DecimalString
+model OraclePrice ema_price?: DecimalString
+model OraclePrice id: string
+model OraclePrice price: DecimalString
+model OraclePrice publish_time: string
+model OraclePriceList
+model OraclePriceList items: OraclePrice[]
+model PairBatchItem
+model PairBatchItem address: Address
+model PairBatchItem chain: ChainSlug
+model PairBatchItem found: boolean
+model PairBatchItem pair?: PairInfo
+model PairBatchRef
+model PairBatchRef address: Address
+model PairBatchRef chain: ChainSlug
+model PairBatchRequest
+model PairBatchRequest items: PairBatchRef[]
+model PairBatchResponse
+model PairBatchResponse items: PairBatchItem[]
+model PairDeployer
+model PairDeployer address: Address
+model PairDeployer block_number?: number
+model PairDeployer log_index?: number
+model PairDeployer reputation?: DeployerReputation
+model PairDeployer tx_hash?: string
+model PairInfo
+model PairInfo apr?: number
+model PairInfo created_at: string
+model PairInfo deployer?: PairDeployer
+model PairInfo dex: Dex
+model PairInfo fees_usd_24h?: number
+model PairInfo last_trade_at?: string
+model PairInfo last_updated_at: string
+model PairInfo launchpad?: PairLaunchpad
+model PairInfo liquidity_onchain_usd?: number
+model PairInfo liquidity_usd: number
+model PairInfo network: ChainRef
+model PairInfo pair_address: Address
+model PairInfo pair_fee: number
+model PairInfo price_change: FloatTimeframes
+model PairInfo price_native?: number
+model PairInfo prop_data?: PairPropData
+model PairInfo safety?: PairSafety
+model PairInfo score?: PairScore
+model PairInfo security?: PairSecurity
+model PairInfo status?: PairStatus
+model PairInfo ticker: string
+model PairInfo tokens: Token[]
+model PairInfo txn: TxnTimeframes
+model PairInfo verdict?: PairVerdict
+model PairInfo volume: FloatTimeframes
+model PairInfo windows?: PairWindows
+model PairLaunchpad
+model PairLaunchpad completed_at?: string
+model PairLaunchpad migrated_pool?: Address
+model PairLaunchpad name: string
+model PairLaunchpad protocol?: string
+model PairLaunchpad stage: string
+model PairPage
+model PairPage applied_sort?: SortBy
+model PairPage applied_timeframe?: TimeFrame
+model PairPage excluded_chains?: ChainSlug[]
+model PairPage items: PairInfo[]
+model PairPage next_cursor?: string
+model PairPage prev_cursor?: string
+model PairPropData
+model PairPropData buy_tax?: number
+model PairPropData is_honeypot?: boolean
+model PairPropData is_perp?: boolean
+model PairPropData liquidity_range?: ValueRange
+model PairPropData perp?: PerpMarket
+model PairPropData perp_disabled?: boolean
+model PairPropData sell_tax?: number
+model PairPropData spot_disabled?: boolean
+model PairSafety
+model PairSafety buy_tax?: number
+model PairSafety is_honeypot: boolean
+model PairSafety labels: RiskSignalKind[]
+model PairSafety lp_burned_pct?: number
+model PairSafety lp_locked_pct?: number
+model PairSafety score: number
+model PairSafety sell_tax?: number
+model PairScore
+model PairScore risk_signals?: RiskSignal[]
+model PairScore title: string
+model PairScore updated_at?: string
+model PairScore value: number
+model PairSecurity
+model PairSecurity burned_pct: number
+model PairSecurity checked_at?: string
+model PairSecurity earliest_unlock_at?: string
+model PairSecurity locked_pct: number
+model PairSecurity top_lock_provider?: string
+model PairVerdict
+model PairVerdict status: VerdictStatus
+model PairWindow
+model PairWindow buy_volume_usd: number
+model PairWindow buyers: number
+model PairWindow price_change_pct?: number
+model PairWindow sell_volume_usd: number
+model PairWindow sellers: number
+model PairWindow txns: TxnCount
+model PairWindow volume_usd: number
+model PairWindows
+model PairWindows h1?: PairWindow
+model PairWindows h24?: PairWindow
+model PairWindows h6?: PairWindow
+model PairWindows m5?: PairWindow
+model PaymentRequired
+model PaymentRequired accepts: PaymentRequirements[]
+model PaymentRequired error?: string
+model PaymentRequired extensions?: Record<string, unknown>
+model PaymentRequired resource?: PaymentResource
+model PaymentRequired x402Version: number
+model PaymentRequirements
+model PaymentRequirements amount: string
+model PaymentRequirements asset: string
+model PaymentRequirements description?: string
+model PaymentRequirements extra?: Record<string, unknown>
+model PaymentRequirements maxAmountRequired: string
+model PaymentRequirements maxTimeoutSeconds: number
+model PaymentRequirements mimeType?: string
+model PaymentRequirements network: string
+model PaymentRequirements payTo: string
+model PaymentRequirements resource?: string
+model PaymentRequirements scheme: string
+model PaymentResource
+model PaymentResource description?: string
+model PaymentResource mimeType?: string
+model PaymentResource serviceName?: string
+model PaymentResource url: string
+model PerpHistory
+model PerpHistory chain: ChainRef
+model PerpHistory interval: string
+model PerpHistory items: PerpPoint[]
+model PerpHistory market: Address
+model PerpLiquidations
+model PerpLiquidations chain: ChainRef
+model PerpLiquidations items: LiquidationDay[]
+model PerpLiquidations market?: Address
+model PerpLiquidations stale: boolean
+model PerpMarket
+model PerpMarket day_notional_volume?: number
+model PerpMarket funding_rate?: number
+model PerpMarket mark_price?: number
+model PerpMarket max_leverage?: number
+model PerpMarket only_isolated?: boolean
+model PerpMarket open_interest?: number
+model PerpMarket open_interest_usd?: number
+model PerpMarket oracle_price?: number
+model PerpMarket premium?: number
+model PerpMarket synced_at?: string
+model PerpPoint
+model PerpPoint borrow_long_1h?: number
+model PerpPoint borrow_short_1h?: number
+model PerpPoint funding_long_1h: number
+model PerpPoint funding_short_1h: number
+model PerpPoint mark_price: number
+model PerpPoint oi_known: boolean
+model PerpPoint oi_long_usd: number
+model PerpPoint oi_short_usd: number
+model PerpPoint oi_usd: number
+model PerpPoint oracle_price: number
+model PerpPoint premium: number
+model PerpPoint timestamp: string
+model Problem
+model Problem code: ErrorCode
+model Problem detail?: string
+model Problem param?: string
+model Problem request_id: string
+model Problem status: number
+model Problem title: string
+model Problem type: string
+model RiskSignal
+model RiskSignal group: RiskSignalGroup
+model RiskSignal kind: RiskSignalKind
+model RiskSignal observed_at?: string
+model RiskSignal severity: RiskSignalSeverity
+model RiskSignal weight: number
+model ScammerScore
+model ScammerScore band: "none" | "low" | "suspect" | "abuser" | (string & {})
+model ScammerScore value: number
+model SearchPair
+model SearchPair base_symbol?: string
+model SearchPair dex_name?: string
+model SearchPair liquidity_usd?: number
+model SearchPair network: ChainSlug
+model SearchPair pair_address: Address
+model SearchPair price_change_24h?: number
+model SearchPair price_usd?: number
+model SearchPair quote_symbol?: string
+model SearchPair ticker: string
+model SearchResponse
+model SearchResponse pairs: SearchPair[]
+model SearchResponse tokens: SearchToken[]
+model SearchToken
+model SearchToken address: Address
+model SearchToken logo_url?: string
+model SearchToken name?: string
+model SearchToken network: ChainSlug
+model SearchToken price_change_24h?: number
+model SearchToken price_usd?: number
+model SearchToken symbol: string
+model StatusResponse
+model StatusResponse degraded?: string[]
+model StatusResponse status: "ok" | "degraded" | (string & {})
+model SwapEventData
+model SwapEventData amount0: number
+model SwapEventData amount1: number
+model SwapEventData price0: number
+model SwapEventData price1: number
+model SwapEventData price_usd0: number
+model SwapEventData price_usd1: number
+model Token
+model Token address: Address
+model Token chain_id: number
+model Token decimals: number
+model Token name: string
+model Token position: number
+model Token price_native: number
+model Token price_range?: ValueRange
+model Token price_usd: number
+model Token reserve: number
+model Token status?: TokenStatus
+model Token symbol: string
+model Token total_supply: number
+model TokenBatchItem
+model TokenBatchItem address: TokenAddress
+model TokenBatchItem chain: ChainSlug
+model TokenBatchItem found: boolean
+model TokenBatchItem token?: TokenInfo
+model TokenBatchRef
+model TokenBatchRef address: TokenAddress
+model TokenBatchRef chain: ChainSlug
+model TokenBatchRequest
+model TokenBatchRequest items: TokenBatchRef[]
+model TokenBatchResponse
+model TokenBatchResponse items: TokenBatchItem[]
+model TokenBrief
+model TokenBrief as_of: string
+model TokenBrief chain: ChainSlug
+model TokenBrief deployer?: BriefDeployer
+model TokenBrief flags: string[]
+model TokenBrief holders?: BriefHolders
+model TokenBrief liquidity: BriefLiquidity
+model TokenBrief market: BriefMarket
+model TokenBrief score: BriefScore
+model TokenBrief source: string
+model TokenBrief verdict: TokenVerdict
+model TokenHolder
+model TokenHolder address: Address
+model TokenHolder balance: number
+model TokenHolder first_buy_at?: string
+model TokenHolder labels: WalletLabel[]
+model TokenHolder share_pct?: number
+model TokenHolder tier?: WalletTier
+model TokenHolder wallet_type?: WalletType
+model TokenHolderPage
+model TokenHolderPage holder_stats?: TokenHolderStats
+model TokenHolderPage items: TokenHolder[]
+model TokenHolderPage next_cursor?: string
+model TokenHolderPage prev_cursor?: string
+model TokenHolderStats
+model TokenHolderStats count: number
+model TokenHolderStats top10_pct: number
+model TokenHolderStats updated_at?: string
+model TokenInfo
+model TokenInfo address?: string
+model TokenInfo categories?: string[]
+model TokenInfo category: TokenCategory
+model TokenInfo chain?: ChainRef
+model TokenInfo circulating_supply?: number
+model TokenInfo confidence: number
+model TokenInfo decimals?: number
+model TokenInfo description?: string
+model TokenInfo fdv_usd?: number
+model TokenInfo holder_stats?: TokenHolderStats
+model TokenInfo holders?: number
+model TokenInfo id: string
+model TokenInfo instances?: TokenInstance[]
+model TokenInfo launch?: TokenLaunch
+model TokenInfo launched_at?: string
+model TokenInfo liquidity_usd?: number
+model TokenInfo logo_url?: string
+model TokenInfo main_pair?: TokenMainPair
+model TokenInfo market?: TokenMarketProjection
+model TokenInfo market_cap_estimated?: boolean
+model TokenInfo market_cap_usd?: number
+model TokenInfo max_supply?: number
+model TokenInfo name: string
+model TokenInfo pairs_count?: number
+model TokenInfo price_change_1h?: number
+model TokenInfo price_change_24h?: number
+model TokenInfo price_change_6h?: number
+model TokenInfo price_usd?: number
+model TokenInfo profile?: TokenProfile
+model TokenInfo rank?: number
+model TokenInfo rating?: TokenRating
+model TokenInfo score?: number
+model TokenInfo slug: string
+model TokenInfo status: CanonicalTokenStatus
+model TokenInfo symbol: string
+model TokenInfo total_supply?: number
+model TokenInfo txns_24h?: number
+model TokenInfo volume_24h?: number
+model TokenInfo windows?: TokenWindows
+model TokenInstance
+model TokenInstance address: string
+model TokenInstance chain_id: number
+model TokenInstance contract_verified?: boolean
+model TokenInstance decimals?: number
+model TokenInstance id: string
+model TokenInstance market?: TokenMarketProjection
+model TokenInstance risk_score?: number
+model TokenInstance status: CanonicalTokenStatus
+model TokenLaunch
+model TokenLaunch block_number: number
+model TokenLaunch deployed_at?: string
+model TokenLaunch deployer: string
+model TokenLaunch tx_hash: string
+model TokenListIncludes
+model TokenListIncludes instances: boolean
+model TokenListIncludes market: boolean
+model TokenMainPair
+model TokenMainPair address: string
+model TokenMainPair ticker: string
+model TokenMarketMetrics
+model TokenMarketMetrics circulating_supply?: NonNegativeDecimalString
+model TokenMarketMetrics fdv_usd?: NonNegativeDecimalString
+model TokenMarketMetrics holders_count?: number
+model TokenMarketMetrics liquidity_usd?: NonNegativeDecimalString
+model TokenMarketMetrics market_cap_usd?: NonNegativeDecimalString
+model TokenMarketMetrics price_usd?: NonNegativeDecimalString
+model TokenMarketMetrics total_supply?: NonNegativeDecimalString
+model TokenMarketProjection
+model TokenMarketProjection expires_at: string
+model TokenMarketProjection metrics: TokenMarketMetrics
+model TokenMarketProjection observed_at: string
+model TokenMarketProjection primary_market?: TokenPrimaryMarket
+model TokenMarketProjection windows: Record<string, TokenMetricWindow>
+model TokenMetricWindow
+model TokenMetricWindow buys?: number
+model TokenMetricWindow price_change_percent?: DecimalString
+model TokenMetricWindow sells?: number
+model TokenMetricWindow transactions?: number
+model TokenMetricWindow volume_usd?: NonNegativeDecimalString
+model TokenMover
+model TokenMover buy_usd?: number
+model TokenMover buyers?: number
+model TokenMover buys?: number
+model TokenMover symbol?: string
+model TokenMover token_address: Address
+model TokenPage
+model TokenPage includes: TokenListIncludes
+model TokenPage items: TokenInfo[]
+model TokenPage next_cursor?: string
+model TokenPage prev_cursor?: string
+model TokenPrimaryMarket
+model TokenPrimaryMarket chain_id: number
+model TokenPrimaryMarket dex_id: string
+model TokenPrimaryMarket liquidity_usd?: NonNegativeDecimalString
+model TokenPrimaryMarket pair_address: string
+model TokenProfile
+model TokenProfile image_url?: string
+model TokenProfile socials?: TokenSocials
+model TokenProfile verification_tier?: string
+model TokenProfile verified: boolean
+model TokenProfile verified_by?: string[]
+model TokenProfile websites: string[]
+model TokenRating
+model TokenRating activity: number
+model TokenRating age_info: number
+model TokenRating holders: number
+model TokenRating liquidity: number
+model TokenRating safety: number
+model TokenRating score: number
+model TokenSocials
+model TokenSocials discord?: string[]
+model TokenSocials docs?: string[]
+model TokenSocials github?: string[]
+model TokenSocials telegram?: string[]
+model TokenSocials twitter?: string[]
+model TokenTrader
+model TokenTrader address: Address
+model TokenTrader avg_entry_price?: number
+model TokenTrader avg_exit_price?: number
+model TokenTrader balance: number
+model TokenTrader bought_usd: number
+model TokenTrader buys: number
+model TokenTrader exited: boolean
+model TokenTrader first_buy_at?: string
+model TokenTrader labels: WalletLabel[]
+model TokenTrader last_sell_at?: string
+model TokenTrader realized_pnl_usd: number
+model TokenTrader sells: number
+model TokenTrader sold_usd: number
+model TokenTrader tier?: WalletTier
+model TokenTrader unrealized_pnl_usd: number
+model TokenTrader wallet_type?: WalletType
+model TokenTraderPage
+model TokenTraderPage items: TokenTrader[]
+model TokenTraderPage next_cursor?: string
+model TokenTraderPage prev_cursor?: string
+model TokenVerdict
+model TokenVerdict chain: ChainSlug
+model TokenVerdict chain_id: number
+model TokenVerdict expires_at?: string
+model TokenVerdict oracle_address?: string
+model TokenVerdict reason_bits: number
+model TokenVerdict reasons: ReasonSlug[]
+model TokenVerdict signature?: string
+model TokenVerdict signed_at?: string
+model TokenVerdict signer?: string
+model TokenVerdict status: VerdictStatus
+model TokenVerdict token_address: Address
+model TokenVerdict verdict_at?: string
+model TokenVerdictProof
+model TokenVerdictProof chain: ChainSlug
+model TokenVerdictProof chain_id: number
+model TokenVerdictProof epoch: number
+model TokenVerdictProof proof: string[]
+model TokenVerdictProof root: string
+model TokenVerdictProof status: VerdictStatus
+model TokenVerdictProof token_address: Address
+model TokenWindow
+model TokenWindow buy_volume_usd: number
+model TokenWindow buyers: number
+model TokenWindow makers: number
+model TokenWindow makers_main_pair_only: boolean
+model TokenWindow price_change_pct?: number
+model TokenWindow sell_volume_usd: number
+model TokenWindow sellers: number
+model TokenWindow txns: TxnCount
+model TokenWindow volume_usd: number
+model TokenWindows
+model TokenWindows h1?: TokenWindow
+model TokenWindows h24?: TokenWindow
+model TokenWindows h6?: TokenWindow
+model TokenWindows m5?: TokenWindow
+model TonTxData
+model TonTxData seq_no: number
+model TonTxData shard_id: number
+model TonTxData work_chain: number
+model TradePage
+model TradePage items: Transaction[]
+model TradePage next_cursor?: string
+model TradePage prev_cursor?: string
+model Transaction
+model Transaction block_info: TransactionBlockInfo
+model Transaction chain_id: number
+model Transaction event_data: TransactionEventData
+model Transaction from_address: Address
+model Transaction hash: string
+model Transaction maker_address: Address
+model Transaction timestamp: string
+model Transaction to_address: Address
+model Transaction tx_type: TxType
+model TxnCount
+model TxnCount buys: number
+model TxnCount sells: number
+model TxnPairStat
+model TxnPairStat buy_volume: number
+model TxnPairStat buyers: number
+model TxnPairStat buys: number
+model TxnPairStat sell_volume: number
+model TxnPairStat sellers: number
+model TxnPairStat sells: number
+model TxnTimeframes
+model TxnTimeframes h1: TxnPairStat
+model TxnTimeframes h24: TxnPairStat
+model TxnTimeframes h6: TxnPairStat
+model TxnTimeframes m5: TxnPairStat
+model UserScore
+model UserScore status: "unknown" | "rated" | "excluded" | (string & {})
+model UserScore value: number
+model ValueRange
+model ValueRange high: number
+model ValueRange high_at: number
+model ValueRange low: number
+model ValueRange low_at: number
+model WalletBestTrades
+model WalletBestTrades hidden_positions?: number
+model WalletBestTrades hidden_realized_pnl_usd?: number
+model WalletBestTrades losers: WalletRankedPosition[]
+model WalletBestTrades winners: WalletRankedPosition[]
+model WalletChainPnl
+model WalletChainPnl chain: ChainRef
+model WalletChainPnl realized_pnl_usd?: number
+model WalletChainPnl share_of_total?: number
+model WalletChainPnl total_pnl_usd?: number
+model WalletChart
+model WalletChart points: WalletPnlPoint[]
+model WalletFunding
+model WalletFunding address: Address
+model WalletFunding chain: ChainRef
+model WalletFunding funded_at?: string
+model WalletFunding funded_by?: Address
+model WalletLabel
+model WalletLabel confidence: number
+model WalletLabel kind: number
+model WalletLabel name: string
+model WalletLabel token_address?: Address
+model WalletLabelList
+model WalletLabelList items: WalletLabelSet[]
+model WalletLabelSet
+model WalletLabelSet address: Address
+model WalletLabelSet copy_eligible?: boolean
+model WalletLabelSet labels?: WalletLabel[]
+model WalletLabelSet tier?: WalletTier
+model WalletLabelSet user_score?: number
+model WalletLabelsRequest
+model WalletLabelsRequest addresses: Address[]
+model WalletLabelsRequest chain: string
+model WalletLifetime
+model WalletLifetime deployed_usd?: number
+model WalletLifetime gross_bought_usd?: number
+model WalletLifetime gross_sold_usd?: number
+model WalletLifetime realized_pnl_usd?: number
+model WalletLifetime total_pnl_usd?: number
+model WalletLifetime unrealized_available?: boolean
+model WalletLifetime unrealized_pnl_usd?: number
+model WalletListItem
+model WalletListItem address: Address
+model WalletListItem chain: ChainRef
+model WalletListItem copy_eligible?: boolean
+model WalletListItem labels?: WalletLabel[]
+model WalletListItem metrics: WalletMetrics
+model WalletListItem scammer_score?: ScammerScore
+model WalletListItem tier?: WalletTier
+model WalletListItem type?: WalletType
+model WalletListItem user_score?: UserScore
+model WalletMetrics
+model WalletMetrics avg_hold_seconds?: number
+model WalletMetrics avg_trade_usd?: number
+model WalletMetrics closed_positions?: number
+model WalletMetrics excluded_no_outcome?: number
+model WalletMetrics excluded_transfer_only?: number
+model WalletMetrics excluded_untracked?: number
+model WalletMetrics gross_loss_usd?: number
+model WalletMetrics gross_profit_usd?: number
+model WalletMetrics invested_usd?: number
+model WalletMetrics losing_trades?: number
+model WalletMetrics median_roi?: number
+model WalletMetrics open_positions?: number
+model WalletMetrics profit_factor?: number
+model WalletMetrics rated_pnl_usd?: number
+model WalletMetrics rated_positions?: number
+model WalletMetrics realized_pnl_usd?: number
+model WalletMetrics roi?: number
+model WalletMetrics tokens_traded?: number
+model WalletMetrics total_pnl_usd?: number
+model WalletMetrics trade_win_rate?: number
+model WalletMetrics trades?: number
+model WalletMetrics unrealized_pnl_usd?: number
+model WalletMetrics volume_usd?: number
+model WalletMetrics win_rate?: number
+model WalletMetrics window: WalletWindow
+model WalletMetrics winning_trades?: number
+model WalletMover
+model WalletMover address: Address
+model WalletMover value: number
+model WalletOverview
+model WalletOverview lifetime?: WalletLifetime
+model WalletOverview most_profitable_chain?: ChainRef
+model WalletOverview per_chain?: WalletChainPnl[]
+model WalletOverview profiles: WalletProfile[]
+model WalletOverview unavailable_chains?: ChainRef[]
+model WalletPage
+model WalletPage items: WalletListItem[]
+model WalletPage next_cursor?: string
+model WalletPnlPoint
+model WalletPnlPoint cost_usd?: number
+model WalletPnlPoint cumulative_roi?: number
+model WalletPnlPoint cumulative_usd?: number
+model WalletPnlPoint losses?: number
+model WalletPnlPoint realized_usd?: number
+model WalletPnlPoint roi?: number
+model WalletPnlPoint timestamp: string
+model WalletPnlPoint wins?: number
+model WalletPosition
+model WalletPosition avg_entry_price?: number
+model WalletPosition avg_exit_price?: number
+model WalletPosition basis_is_incomplete?: boolean
+model WalletPosition bought_qty?: number
+model WalletPosition bought_usd?: number
+model WalletPosition buy_txs?: number
+model WalletPosition closed_at?: string
+model WalletPosition cost_basis_usd?: number
+model WalletPosition fees_usd?: number
+model WalletPosition first_trade_at?: string
+model WalletPosition hold_seconds?: number
+model WalletPosition last_trade_at?: string
+model WalletPosition pairs?: WalletPositionPair[]
+model WalletPosition qty_held?: number
+model WalletPosition realized_pnl_pct?: number
+model WalletPosition realized_pnl_usd?: number
+model WalletPosition sell_txs?: number
+model WalletPosition sold_qty?: number
+model WalletPosition sold_usd?: number
+model WalletPosition token_address: Address
+model WalletPosition token_score?: number
+model WalletPosition token_status?: number
+model WalletPosition token_symbol?: string
+model WalletPosition unrealized_pnl_usd?: number
+model WalletPosition unsellable?: boolean
+model WalletPositionPage
+model WalletPositionPage items: WalletPosition[]
+model WalletPositionPage next_cursor?: string
+model WalletPositionPair
+model WalletPositionPair address: Address
+model WalletPositionPair dex_name?: string
+model WalletPositionPair liquidity_usd?: number
+model WalletPositionPair rugged?: boolean
+model WalletPositionPair score?: number
+model WalletPositionPair status?: number
+model WalletPositionPair ticker?: string
+model WalletPositionPair unsellable?: boolean
+model WalletPositionRound
+model WalletPositionRound avg_entry_price?: number
+model WalletPositionRound avg_exit_price?: number
+model WalletPositionRound basis_is_incomplete?: boolean
+model WalletPositionRound bought_qty?: number
+model WalletPositionRound bought_usd?: number
+model WalletPositionRound buy_txs?: number
+model WalletPositionRound closed_at?: string
+model WalletPositionRound closed_by_trade?: string
+model WalletPositionRound exited?: boolean
+model WalletPositionRound fees_usd?: number
+model WalletPositionRound first_buy_at?: string
+model WalletPositionRound first_trade_at?: string
+model WalletPositionRound last_sell_at?: string
+model WalletPositionRound last_trade_at?: string
+model WalletPositionRound max_qty_held?: number
+model WalletPositionRound opened_by_trade?: string
+model WalletPositionRound qty_held?: number
+model WalletPositionRound realized_pnl_usd?: number
+model WalletPositionRound realized_share?: number
+model WalletPositionRound remaining_ratio?: number
+model WalletPositionRound round_no: number
+model WalletPositionRound sell_txs?: number
+model WalletPositionRound sold_qty?: number
+model WalletPositionRound sold_usd?: number
+model WalletPositionRound token_address: Address
+model WalletProfile
+model WalletProfile address: Address
+model WalletProfile age_is_estimated?: boolean
+model WalletProfile chain: ChainRef
+model WalletProfile cluster_id?: number
+model WalletProfile copy_eligible?: boolean
+model WalletProfile first_onchain_at?: string
+model WalletProfile first_seen_at?: string
+model WalletProfile human_known?: boolean
+model WalletProfile labels?: WalletLabel[]
+model WalletProfile last_active_at?: string
+model WalletProfile metrics?: WalletMetrics[]
+model WalletProfile rebuild_skip_reason?: string
+model WalletProfile rebuild_skipped?: boolean
+model WalletProfile scammer_score?: ScammerScore
+model WalletProfile signals?: WalletScoreSignal[]
+model WalletProfile tier?: WalletTier
+model WalletProfile type?: WalletType
+model WalletProfile user_score?: UserScore
+model WalletRankedPosition
+model WalletRankedPosition buys?: number
+model WalletRankedPosition entry_market_cap_usd?: number
+model WalletRankedPosition exit_market_cap_usd?: number
+model WalletRankedPosition realized_pnl_usd?: number
+model WalletRankedPosition roi?: number
+model WalletRankedPosition sells?: number
+model WalletRankedPosition symbol?: string
+model WalletRankedPosition token_address: Address
+model WalletRoundPage
+model WalletRoundPage items: WalletPositionRound[]
+model WalletRoundPage next_cursor?: string
+model WalletScoreSignal
+model WalletScoreSignal detail?: string
+model WalletScoreSignal direction: string
+model WalletScoreSignal kind: string
+model WalletScoreSignal last_seen?: string
+model WalletScoreSignal occurrences?: number
+model WalletScoreSignal points?: number
+model WalletScoreSignal subject?: string
+model WalletScoreSignal target: string
+model WalletScoreSignal title?: string
+model WalletStats
+model WalletStats chains: ChainWalletStats[]
+model WalletTrade
+model WalletTrade block_number?: number
+model WalletTrade fee_is_estimated?: boolean
+model WalletTrade fee_usd?: number
+model WalletTrade notional_usd?: number
+model WalletTrade pair_address?: Address
+model WalletTrade price_usd?: number
+model WalletTrade qty?: number
+model WalletTrade side?: string
+model WalletTrade timestamp?: string
+model WalletTrade token_address?: Address
+model WalletTrade token_symbol?: string
+model WalletTrade trade_uid: string
+model WalletTradePage
+model WalletTradePage items: WalletTrade[]
+model WalletTradePage next_cursor?: string
+model X402DiscoveredResource
+model X402DiscoveredResource accepts: PaymentRequirements[]
+model X402DiscoveredResource extensions?: Record<string, unknown>
+model X402DiscoveredResource lastUpdated: string
+model X402DiscoveredResource resource: string
+model X402DiscoveredResource type: string
+model X402DiscoveredResource x402Version: number
+model X402Discovery
+model X402Discovery items: X402DiscoveredResource[]
+model X402Discovery resources: string[]
+model X402Discovery x402Version: number
+type Address = string
+type CanonicalTokenStatus | "community"
+type CanonicalTokenStatus | "delisted"
+type CanonicalTokenStatus | "honeypot"
+type CanonicalTokenStatus | "scam"
+type CanonicalTokenStatus | "unknown"
+type CanonicalTokenStatus | "verified"
+type CanonicalTokenStatus | (string & {})
+type ChainInput | number
+type ChainInput | string
+type ChainSlug = string
+type DecimalString = string
+type DeployerStatus = string
+type ErrorCode | "chain_not_found"
+type ErrorCode | "internal"
+type ErrorCode | "invalid_api_key"
+type ErrorCode | "invalid_param"
+type ErrorCode | "key_in_query"
+type ErrorCode | "not_found"
+type ErrorCode | "plan_required"
+type ErrorCode | "rate_limited"
+type ErrorCode | "upstream_timeout"
+type ErrorCode | "upstream_unavailable"
+type ErrorCode | (string & {})
+type FactoryType | "balancerV2"
+type FactoryType | "curveV2"
+type FactoryType | "dedustV1"
+type FactoryType | "dedustV2"
+type FactoryType | "hyperliquid"
+type FactoryType | "stonfiV1"
+type FactoryType | "stonfiV2"
+type FactoryType | "uniswapV2"
+type FactoryType | "uniswapV3"
+type FactoryType | "uniswapV4"
+type FactoryType | "uranusV1"
+type FactoryType | (string & {})
+type FarmSortBy | "apr"
+type FarmSortBy | "tvl"
+type FarmSortBy | "updated_at"
+type FarmSortBy | (string & {})
+type FarmStatus | "unverified"
+type FarmStatus | "verified"
+type FarmStatus | (string & {})
+type LaunchStatus | "bonding"
+type LaunchStatus | "graduated"
+type LaunchStatus | "new"
+type LaunchStatus | (string & {})
+type LeaderboardScope | "chains"
+type LeaderboardScope | "protocols"
+type LeaderboardScope | (string & {})
+type MarketType | "any"
+type MarketType | "perp"
+type MarketType | "spot"
+type MarketType | (string & {})
+type NonNegativeDecimalString = string
+type OrderBy | "asc"
+type OrderBy | "desc"
+type OrderBy | (string & {})
+type PairStatus | "active"
+type PairStatus | "scam"
+type PairStatus | "unresolved"
+type PairStatus | "verified"
+type PairStatus | (string & {})
+type PaymentSignature | { header: string; }
+type PaymentSignature | { payload: Record<string, unknown>; }
+type PerpSortBy | "created_at"
+type PerpSortBy | "price_change"
+type PerpSortBy | "transactions"
+type PerpSortBy | "trending"
+type PerpSortBy | "volume"
+type PerpSortBy | (string & {})
+type Plan | "enterprise"
+type Plan | "free"
+type Plan | "startup"
+type Plan | "unicorn"
+type Plan | (string & {})
+type PositionSortBy | "hold"
+type PositionSortBy | "realized_pnl"
+type PositionSortBy | "token"
+type PositionSortBy | "unrealized_pnl"
+type PositionSortBy | (string & {})
+type PositionState | "any"
+type PositionState | "closed"
+type PositionState | "open"
+type PositionState | (string & {})
+type ReasonSlug | "deployer_rug"
+type ReasonSlug | "duplicate_symbol"
+type ReasonSlug | "high_tax"
+type ReasonSlug | "honeypot"
+type ReasonSlug | "lp_unlocked"
+type ReasonSlug | "owner_can_mint"
+type ReasonSlug | "sell_blocked"
+type ReasonSlug | "unresolved_metadata"
+type ReasonSlug | (string & {})
+type ResolutionType | "1"
+type ResolutionType | "12H"
+type ResolutionType | "15"
+type ResolutionType | "1D"
+type ResolutionType | "1H"
+type ResolutionType | "1M"
+type ResolutionType | "1W"
+type ResolutionType | "1Y"
+type ResolutionType | "2H"
+type ResolutionType | "3"
+type ResolutionType | "30"
+type ResolutionType | "45"
+type ResolutionType | "4H"
+type ResolutionType | "5"
+type ResolutionType | "6H"
+type ResolutionType | "6M"
+type ResolutionType | (string & {})
+type RiskSignalGroup | "can_be_seized"
+type RiskSignalGroup | "cannot_exit"
+type RiskSignalGroup | "exit_is_taxed"
+type RiskSignalGroup | "liquidity_can_leave"
+type RiskSignalGroup | "operator_record"
+type RiskSignalGroup | "unverified"
+type RiskSignalGroup | (string & {})
+type RiskSignalKind = string
+type RiskSignalSeverity | "critical"
+type RiskSignalSeverity | "info"
+type RiskSignalSeverity | "warning"
+type RiskSignalSeverity | (string & {})
+type SortBy | "apr"
+type SortBy | "created_at"
+type SortBy | "hottest"
+type SortBy | "liquidity"
+type SortBy | "popular"
+type SortBy | "price_change"
+type SortBy | "score"
+type SortBy | "transactions"
+type SortBy | "trending"
+type SortBy | "updated_at"
+type SortBy | "volume"
+type SortBy | (string & {})
+type TimeFrame | "1h"
+type TimeFrame | "24h"
+type TimeFrame | "5m"
+type TimeFrame | "6h"
+type TimeFrame | (string & {})
+type TokenAddress = string
+type TokenCategory | "default"
+type TokenCategory | "meme"
+type TokenCategory | "native"
+type TokenCategory | "stablecoin-usd"
+type TokenCategory | "unknown"
+type TokenCategory | "wrapped"
+type TokenCategory | (string & {})
+type TokenSortBy | "created_at"
+type TokenSortBy | "fdv"
+type TokenSortBy | "holders"
+type TokenSortBy | "liquidity"
+type TokenSortBy | "market_cap"
+type TokenSortBy | "price_change"
+type TokenSortBy | "rating"
+type TokenSortBy | "txns"
+type TokenSortBy | "volume"
+type TokenSortBy | (string & {})
+type TokenStatus | "active"
+type TokenStatus | "scam"
+type TokenStatus | "unresolved"
+type TokenStatus | "verified"
+type TokenStatus | (string & {})
+type TokenTraderSortBy | "bought"
+type TokenTraderSortBy | "holding"
+type TokenTraderSortBy | "realized_pnl"
+type TokenTraderSortBy | (string & {})
+type TransactionBlockInfo | EthereumTxData
+type TransactionBlockInfo | TonTxData
+type TransactionEventData | LiquidityEventData
+type TransactionEventData | SwapEventData
+type TxType | "add_liquidity"
+type TxType | "all"
+type TxType | "burn"
+type TxType | "buy"
+type TxType | "mint"
+type TxType | "remove_liquidity"
+type TxType | "sell"
+type TxType | (string & {})
+type VerdictStatus | "blocked"
+type VerdictStatus | "ok"
+type VerdictStatus | "unknown"
+type VerdictStatus | "watch"
+type VerdictStatus | (string & {})
+type WalletSortBy | "realized_pnl"
+type WalletSortBy | "total_pnl"
+type WalletSortBy | "trades"
+type WalletSortBy | "user_score"
+type WalletSortBy | "volume"
+type WalletSortBy | "win_rate"
+type WalletSortBy | (string & {})
+type WalletTier = string
+type WalletType | "human"
+type WalletType | "robot"
+type WalletType | "unknown"
+type WalletType | (string & {})
+type WalletWindow | "1d"
+type WalletWindow | "1y"
+type WalletWindow | "30d"
+type WalletWindow | "7d"
+type WalletWindow | "all"
+type WalletWindow | (string & {})

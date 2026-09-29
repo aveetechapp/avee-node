@@ -1,0 +1,42 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": [
+      "ES2022",
+      "DOM"
+    ],
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "exactOptionalPropertyTypes": true,
+    "isolatedModules": true,
+    "verbatimModuleSyntax": true,
+    "skipLibCheck": true,
+    "noEmit": true,
+    "types": [
+      "node"
+    ],
+    "paths": {
+      "@avee/sdk": [
+        "./src/index.ts"
+      ],
+      "@avee/sdk/astra": [
+        "./src/astra/index.ts"
+      ]
+    }
+  },
+  "include": [
+    "src",
+    "test",
+    "compat",
+    "examples",
+    "vitest.config.ts"
+  ],
+  "exclude": [
+    "compat/astra"
+  ]
+}

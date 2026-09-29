@@ -1,0 +1,72 @@
+{
+  "name": "@avee/sdk",
+  "version": "0.1.0",
+  "description": "Clients for avee: the DEX data API (/api/v1) and Astra, the Hermes-compatible price oracle (@avee/sdk/astra).",
+  "license": "MIT",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aveetechapp/avee-node.git"
+  },
+  "homepage": "https://github.com/aveetechapp/avee-node#readme",
+  "bugs": "https://github.com/aveetechapp/avee-node/issues",
+  "keywords": ["dex", "defi", "crypto", "market-data", "ohlcv", "x402", "api-client", "oracle", "price-feed", "hermes", "pyth", "websocket", "sse"],
+  "engines": {
+    "node": ">=20"
+  },
+  "sideEffects": false,
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/esm/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/index.d.ts",
+        "default": "./dist/cjs/index.js"
+      }
+    },
+    "./astra": {
+      "import": {
+        "types": "./dist/esm/astra/index.d.ts",
+        "default": "./dist/esm/astra/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/astra/index.d.ts",
+        "default": "./dist/cjs/astra/index.js"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "files": ["dist", "README.md", "ASTRA.md", "CHANGELOG.md", "LICENSE"],
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json",
+    "build": "rm -rf dist && tsc -p tsconfig.build.json && tsc -p tsconfig.cjs.json && node -e \"require('node:fs').writeFileSync('dist/cjs/package.json','{\\\"type\\\":\\\"commonjs\\\"}\\n')\"",
+    "test": "vitest run",
+    "test:live": "AVEE_LIVE=1 ASTRA_LIVE=1 vitest run test/live.test.ts test/astra/live.test.ts",
+    "generate": "node ../scripts/generate.mjs",
+    "spec:check": "node ../scripts/sync-spec.mjs --check && node ../scripts/generate.mjs --check && node ../scripts/sync-astra.mjs --check",
+    "names:check": "node ../scripts/rename.mjs --check",
+    "api:check": "npm run build && node api/report.mjs",
+    "api:update": "npm run build && node api/report.mjs --update",
+    "compat": "npm run build && tsc -p compat/astra/tsconfig.node16.json && tsc -p compat/astra/tsconfig.bundler.json && node --experimental-strip-types --no-warnings --test compat/astra/*.test.ts compat/astra/*.test.mjs",
+    "package:check": "npm run build && npx --yes @arethetypeswrong/cli@0.18.5 --pack .",
+    "prepublishOnly": "npm run typecheck && npm test && npm run build"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.0",
+    "@types/ws": "^8.18.1",
+    "typescript": "~5.9.3",
+    "vitest": "^5.0.2",
+    "ws": "^8.22.0",
+    "yaml": "^2.9.1"
+  },
+  "typesVersions": {
+    "*": {
+      "astra": ["./dist/esm/astra/index.d.ts"]
+    }
+  }
+}
