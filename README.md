@@ -206,7 +206,7 @@ is checked against its model before it is returned: a missing required field or 
 type is an `AveeValidationError` naming the field, and `null` in an optional field reads as absent.
 Inside a major version the package is additive only.
 
-## Moving from the avee-agents `@avee_tech/sdk` 0.1
+## Moving from the avee-agents `@avee/sdk` 0.1
 
 That package covered five calls; this one covers every operation, named by its `operationId`.
 
