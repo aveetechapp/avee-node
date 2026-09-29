@@ -4,8 +4,8 @@ import { defineConfig } from "vitest/config";
 export default defineConfig({
   resolve: {
     alias: [
-      { find: /^@avee\/sdk\/astra$/, replacement: fileURLToPath(new URL("./src/astra/index.ts", import.meta.url)) },
-      { find: /^@avee\/sdk$/, replacement: fileURLToPath(new URL("./src/index.ts", import.meta.url)) },
+      { find: "@avee_tech/sdk/astra", replacement: fileURLToPath(new URL("./src/astra/index.ts", import.meta.url)) },
+      { find: "@avee_tech/sdk", replacement: fileURLToPath(new URL("./src/index.ts", import.meta.url)) },
     ],
   },
   test: {
