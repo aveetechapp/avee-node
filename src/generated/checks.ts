@@ -21,6 +21,7 @@ const listOfTokenBatchItem = list(checkTokenBatchItem);
 const listOfTokenHolder = list(checkTokenHolder);
 const listOfTokenTrader = list(checkTokenTrader);
 const listOfFarmInfo = list(checkFarmInfo);
+const listOfFarmRewardStream = list(checkFarmRewardStream);
 const listOfWalletListItem = list(checkWalletListItem);
 const listOfChainWalletStats = list(checkChainWalletStats);
 const listOfWalletLabelSet = list(checkWalletLabelSet);
@@ -158,6 +159,17 @@ export function checkPerpHistory(v: unknown): void {
   req(o, "market", str);
   req(o, "interval", str);
   req(o, "items", listOfPerpPoint);
+}
+
+export function checkPerpStats(v: unknown): void {
+  const o = obj(v);
+  req(o, "m5", checkPerpFlow);
+  req(o, "h1", checkPerpFlow);
+  req(o, "h6", checkPerpFlow);
+  req(o, "h24", checkPerpFlow);
+  opt(o, "open_interest_usd_24h_ago", num);
+  opt(o, "max_liquidation_usd_24h", num);
+  req(o, "liquidations_stale", bool);
 }
 
 export function checkPerpLiquidations(v: unknown): void {
@@ -310,6 +322,13 @@ export function checkFarmInfo(v: unknown): void {
   req(o, "status", str);
   opt(o, "lifecycle_state", str);
   opt(o, "data_quality_flags", listOfStr);
+  opt(o, "family", str);
+  opt(o, "farm_key", str);
+  opt(o, "venue", str);
+  opt(o, "verified", bool);
+  opt(o, "apr_diagnostic", str);
+  opt(o, "apr_max", str);
+  opt(o, "reward_streams", listOfFarmRewardStream);
 }
 
 export function checkWalletPage(v: unknown): void {
@@ -365,6 +384,7 @@ export function checkWalletProfile(v: unknown): void {
   opt(o, "last_active_at", str);
   opt(o, "age_is_estimated", bool);
   opt(o, "user_score", checkUserScore);
+  opt(o, "human_score", checkHumanScore);
   opt(o, "scammer_score", checkScammerScore);
   opt(o, "signals", listOfWalletScoreSignal);
   opt(o, "metrics", listOfWalletMetrics);
@@ -449,6 +469,8 @@ function checkChainInfo(v: unknown): void {
   opt(o, "metrics_stale", bool);
   opt(o, "quality_liquidity_usd", num);
   opt(o, "txns_24h", int);
+  opt(o, "perp_volume_24h", num);
+  opt(o, "perp_txns_24h", int);
   opt(o, "new_pairs_24h", int);
   opt(o, "new_pairs_24h_total", int);
   opt(o, "scams_total", int);
@@ -615,6 +637,7 @@ function checkTransaction(v: unknown): void {
   req(o, "from_address", str);
   req(o, "to_address", str);
   req(o, "tx_type", str);
+  opt(o, "perp_action", str);
   req(o, "block_info", checkTransactionBlockInfo);
   req(o, "event_data", checkTransactionEventData);
 }
@@ -641,6 +664,17 @@ function checkPerpPoint(v: unknown): void {
   opt(o, "borrow_long_1h", num);
   opt(o, "borrow_short_1h", num);
   req(o, "oi_known", bool);
+}
+
+function checkPerpFlow(v: unknown): void {
+  const o = obj(v);
+  req(o, "open_long_usd", num);
+  req(o, "close_long_usd", num);
+  req(o, "open_short_usd", num);
+  req(o, "close_short_usd", num);
+  req(o, "liquidated_long_usd", num);
+  req(o, "liquidated_short_usd", num);
+  req(o, "liquidations", int);
 }
 
 function checkLiquidationDay(v: unknown): void {
@@ -841,6 +875,17 @@ function checkFarmFactory(v: unknown): void {
   req(o, "name", str);
 }
 
+function checkFarmRewardStream(v: unknown): void {
+  const o = obj(v);
+  req(o, "token", str);
+  req(o, "symbol", str);
+  req(o, "decimals", int);
+  opt(o, "apr", str);
+  opt(o, "price_usd", str);
+  opt(o, "end_at", str);
+  req(o, "status", str);
+}
+
 function checkWalletListItem(v: unknown): void {
   const o = obj(v);
   req(o, "address", str);
@@ -850,6 +895,7 @@ function checkWalletListItem(v: unknown): void {
   opt(o, "labels", listOfWalletLabel);
   opt(o, "copy_eligible", bool);
   opt(o, "user_score", checkUserScore);
+  opt(o, "human_score", checkHumanScore);
   opt(o, "scammer_score", checkScammerScore);
   req(o, "metrics", checkWalletMetrics);
 }
@@ -941,6 +987,12 @@ function checkWalletLabel(v: unknown): void {
 }
 
 function checkUserScore(v: unknown): void {
+  const o = obj(v);
+  req(o, "value", int);
+  req(o, "status", str);
+}
+
+function checkHumanScore(v: unknown): void {
   const o = obj(v);
   req(o, "value", int);
   req(o, "status", str);
@@ -1143,6 +1195,12 @@ function checkPerpMarket(v: unknown): void {
   opt(o, "oracle_price", num);
   opt(o, "premium", num);
   opt(o, "day_notional_volume", num);
+  opt(o, "funding_long_1h", num);
+  opt(o, "funding_short_1h", num);
+  opt(o, "borrow_long_1h", num);
+  opt(o, "borrow_short_1h", num);
+  opt(o, "oi_long_usd", num);
+  opt(o, "oi_short_usd", num);
   opt(o, "synced_at", str);
 }
 

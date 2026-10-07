@@ -84,7 +84,7 @@ export class WsTransport implements StreamTransport {
           heartbeatSent = true;
           send(HEARTBEAT);
         }
-      }, Math.max(100, Math.floor(idleTimeoutMs / 4)));
+      }, Math.max(10, Math.floor(idleTimeoutMs / 4)));
 
       const send = (data: string) => {
         try {

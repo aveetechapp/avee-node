@@ -49,6 +49,7 @@ function describe(name, decl) {
     let type = decl.type;
     if (type && ts.isTypeOperatorNode(type)) type = type.type;
     if (type && ts.isTupleTypeNode(type)) return type.elements.map((e) => `const ${name} item ${flat(e)}`);
+    if (type && ts.isTypeLiteralNode(type)) return [`const ${name}`, ...members(`const ${name}`, type.members)];
     return [`const ${name}: ${decl.type ? flat(decl.type) : "unknown"}`];
   }
   return [`${ts.SyntaxKind[decl.kind]} ${name}`];

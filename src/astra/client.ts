@@ -146,7 +146,7 @@ export class AstraClient {
       maxRetryDelayMs: positive("maxRetryDelayMs", options.maxRetryDelayMs, 30_000),
       maxResponseBytes: positive("maxResponseBytes", options.maxResponseBytes, 8 * 1024 * 1024),
       headers: { ...options.headers },
-      fetch: fetchImpl,
+      fetch: fetchImpl.bind(globalThis),
     });
   }
 

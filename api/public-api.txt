@@ -76,6 +76,7 @@ class Operations pairs(params?: PairsParams, options?: RequestOptions): Promise<
 class Operations pairsNew(params: PairsNewParams, options?: RequestOptions): Promise<m.PairPage>
 class Operations perpHistory(market: string, params?: PerpHistoryParams, options?: RequestOptions): Promise<m.PerpHistory>
 class Operations perpLiquidations(params?: PerpLiquidationsParams, options?: RequestOptions): Promise<m.PerpLiquidations>
+class Operations perpStats(market: string, params?: PerpStatsParams, options?: RequestOptions): Promise<m.PerpStats>
 class Operations perps(params?: PerpsParams, options?: RequestOptions): Promise<m.PairPage>
 class Operations protected abstract call<T>(call: Call, options?: RequestOptions): Promise<T>
 class Operations search(params: SearchParams, options?: RequestOptions): Promise<m.SearchResponse>
@@ -104,15 +105,55 @@ class Operations walletStats(params?: WalletStatsParams, options?: RequestOption
 class Operations walletTrades(chain: ChainInput, address: string, params?: WalletTradesParams, options?: RequestOptions): Promise<m.WalletTradePage>
 class Operations wallets(params: WalletsParams, options?: RequestOptions): Promise<m.WalletPage>
 class Operations x402Discovery(options?: RequestOptions): Promise<m.X402Discovery>
-const CanonicalTokenStatus: { readonly Unknown: "unknown"; readonly Community: "community"; readonly Verified: "verified"; readonly Scam: "scam"; readonly Honeypot: "honeypot"; readonly Delisted: "delisted"; }
+const CanonicalTokenStatus
+const CanonicalTokenStatus readonly Community: "community"
+const CanonicalTokenStatus readonly Delisted: "delisted"
+const CanonicalTokenStatus readonly Honeypot: "honeypot"
+const CanonicalTokenStatus readonly Scam: "scam"
+const CanonicalTokenStatus readonly Unknown: "unknown"
+const CanonicalTokenStatus readonly Verified: "verified"
 const DEFAULT_BASE_URL: unknown
-const ErrorCode: { readonly InvalidApiKey: "invalid_api_key"; readonly KeyInQuery: "key_in_query"; readonly PlanRequired: "plan_required"; readonly RateLimited: "rate_limited"; readonly ChainNotFound: "chain_not_found"; readonly NotFound: "not_found"; readonly InvalidParam: "invalid_param"; readonly UpstreamUnavailable: "upstream_unavailable"; readonly UpstreamTimeout: "upstream_timeout"; readonly Internal: "internal"; }
-const FactoryType: { readonly CurveV2: "curveV2"; readonly StonfiV1: "stonfiV1"; readonly StonfiV2: "stonfiV2"; readonly DedustV1: "dedustV1"; readonly DedustV2: "dedustV2"; readonly UranusV1: "uranusV1"; readonly BalancerV2: "balancerV2"; readonly UniswapV2: "uniswapV2"; readonly UniswapV3: "uniswapV3"; readonly UniswapV4: "uniswapV4"; readonly Hyperliquid: "hyperliquid"; }
-const FarmSortBy: { readonly Tvl: "tvl"; readonly Apr: "apr"; readonly UpdatedAt: "updated_at"; }
-const FarmStatus: { readonly Unverified: "unverified"; readonly Verified: "verified"; }
-const LaunchStatus: { readonly New: "new"; readonly Bonding: "bonding"; readonly Graduated: "graduated"; }
-const LeaderboardScope: { readonly Chains: "chains"; readonly Protocols: "protocols"; }
-const MarketType: { readonly Any: "any"; readonly Spot: "spot"; readonly Perp: "perp"; }
+const ErrorCode
+const ErrorCode readonly ChainNotFound: "chain_not_found"
+const ErrorCode readonly Internal: "internal"
+const ErrorCode readonly InvalidApiKey: "invalid_api_key"
+const ErrorCode readonly InvalidParam: "invalid_param"
+const ErrorCode readonly KeyInQuery: "key_in_query"
+const ErrorCode readonly NotFound: "not_found"
+const ErrorCode readonly PlanRequired: "plan_required"
+const ErrorCode readonly RateLimited: "rate_limited"
+const ErrorCode readonly UpstreamTimeout: "upstream_timeout"
+const ErrorCode readonly UpstreamUnavailable: "upstream_unavailable"
+const FactoryType
+const FactoryType readonly BalancerV2: "balancerV2"
+const FactoryType readonly CurveV2: "curveV2"
+const FactoryType readonly DedustV1: "dedustV1"
+const FactoryType readonly DedustV2: "dedustV2"
+const FactoryType readonly Hyperliquid: "hyperliquid"
+const FactoryType readonly StonfiV1: "stonfiV1"
+const FactoryType readonly StonfiV2: "stonfiV2"
+const FactoryType readonly UniswapV2: "uniswapV2"
+const FactoryType readonly UniswapV3: "uniswapV3"
+const FactoryType readonly UniswapV4: "uniswapV4"
+const FactoryType readonly UranusV1: "uranusV1"
+const FarmSortBy
+const FarmSortBy readonly Apr: "apr"
+const FarmSortBy readonly Tvl: "tvl"
+const FarmSortBy readonly UpdatedAt: "updated_at"
+const FarmStatus
+const FarmStatus readonly Unverified: "unverified"
+const FarmStatus readonly Verified: "verified"
+const LaunchStatus
+const LaunchStatus readonly Bonding: "bonding"
+const LaunchStatus readonly Graduated: "graduated"
+const LaunchStatus readonly New: "new"
+const LeaderboardScope
+const LeaderboardScope readonly Chains: "chains"
+const LeaderboardScope readonly Protocols: "protocols"
+const MarketType
+const MarketType readonly Any: "any"
+const MarketType readonly Perp: "perp"
+const MarketType readonly Spot: "spot"
 const OPERATIONS item { readonly id: "chains"; readonly method: "GET"; readonly path: "/chains"; readonly tag: "meta"; }
 const OPERATIONS item { readonly id: "config"; readonly method: "GET"; readonly path: "/config"; readonly tag: "meta"; }
 const OPERATIONS item { readonly id: "deployerTokens"; readonly method: "GET"; readonly path: "/deployers/{address}/tokens"; readonly tag: "dex"; }
@@ -131,6 +172,7 @@ const OPERATIONS item { readonly id: "pairs"; readonly method: "GET"; readonly p
 const OPERATIONS item { readonly id: "pairsNew"; readonly method: "GET"; readonly path: "/pairs/new"; readonly tag: "dex"; }
 const OPERATIONS item { readonly id: "perpHistory"; readonly method: "GET"; readonly path: "/perps/{market}/history"; readonly tag: "dex"; }
 const OPERATIONS item { readonly id: "perpLiquidations"; readonly method: "GET"; readonly path: "/perps/liquidations"; readonly tag: "dex"; }
+const OPERATIONS item { readonly id: "perpStats"; readonly method: "GET"; readonly path: "/perps/{market}/stats"; readonly tag: "dex"; }
 const OPERATIONS item { readonly id: "perps"; readonly method: "GET"; readonly path: "/perps"; readonly tag: "dex"; }
 const OPERATIONS item { readonly id: "search"; readonly method: "GET"; readonly path: "/search"; readonly tag: "dex"; }
 const OPERATIONS item { readonly id: "status"; readonly method: "GET"; readonly path: "/status"; readonly tag: "meta"; }
@@ -158,28 +200,153 @@ const OPERATIONS item { readonly id: "walletStats"; readonly method: "GET"; read
 const OPERATIONS item { readonly id: "walletTrades"; readonly method: "GET"; readonly path: "/chains/{chain}/wallets/{address}/trades"; readonly tag: "wallet"; }
 const OPERATIONS item { readonly id: "wallets"; readonly method: "GET"; readonly path: "/wallets"; readonly tag: "wallet"; }
 const OPERATIONS item { readonly id: "x402Discovery"; readonly method: "GET"; readonly path: "/.well-known/x402"; readonly tag: "meta"; }
-const OrderBy: { readonly Asc: "asc"; readonly Desc: "desc"; }
+const OrderBy
+const OrderBy readonly Asc: "asc"
+const OrderBy readonly Desc: "desc"
 const PREVIEW_BASE_URL: unknown
-const PairStatus: { readonly Active: "active"; readonly Verified: "verified"; readonly Unresolved: "unresolved"; readonly Scam: "scam"; }
-const PerpSortBy: { readonly Volume: "volume"; readonly Transactions: "transactions"; readonly PriceChange: "price_change"; readonly Trending: "trending"; readonly CreatedAt: "created_at"; }
-const Plan: { readonly Free: "free"; readonly Startup: "startup"; readonly Unicorn: "unicorn"; readonly Enterprise: "enterprise"; }
-const PositionSortBy: { readonly Token: "token"; readonly RealizedPnl: "realized_pnl"; readonly UnrealizedPnl: "unrealized_pnl"; readonly Hold: "hold"; }
-const PositionState: { readonly Any: "any"; readonly Open: "open"; readonly Closed: "closed"; }
-const ReasonSlug: { readonly Honeypot: "honeypot"; readonly UnresolvedMetadata: "unresolved_metadata"; readonly DuplicateSymbol: "duplicate_symbol"; readonly LpUnlocked: "lp_unlocked"; readonly OwnerCanMint: "owner_can_mint"; readonly SellBlocked: "sell_blocked"; readonly HighTax: "high_tax"; readonly DeployerRug: "deployer_rug"; }
-const ResolutionType: { readonly N1: "1"; readonly N3: "3"; readonly N5: "5"; readonly N15: "15"; readonly N30: "30"; readonly N45: "45"; readonly H1: "1H"; readonly H2: "2H"; readonly H4: "4H"; readonly H6: "6H"; readonly H12: "12H"; readonly D1: "1D"; readonly W1: "1W"; readonly M1: "1M"; readonly M6: "6M"; readonly Y1: "1Y"; }
-const RiskSignalGroup: { readonly CannotExit: "cannot_exit"; readonly CanBeSeized: "can_be_seized"; readonly ExitIsTaxed: "exit_is_taxed"; readonly LiquidityCanLeave: "liquidity_can_leave"; readonly OperatorRecord: "operator_record"; readonly Unverified: "unverified"; }
-const RiskSignalSeverity: { readonly Critical: "critical"; readonly Warning: "warning"; readonly Info: "info"; }
-const SortBy: { readonly Liquidity: "liquidity"; readonly UpdatedAt: "updated_at"; readonly CreatedAt: "created_at"; readonly Score: "score"; readonly Popular: "popular"; readonly Hottest: "hottest"; readonly Trending: "trending"; readonly Volume: "volume"; readonly Transactions: "transactions"; readonly PriceChange: "price_change"; readonly Apr: "apr"; }
-const TimeFrame: { readonly M5: "5m"; readonly H1: "1h"; readonly H6: "6h"; readonly H24: "24h"; }
-const TokenCategory: { readonly Unknown: "unknown"; readonly Native: "native"; readonly Default: "default"; readonly StablecoinUsd: "stablecoin-usd"; readonly Wrapped: "wrapped"; readonly Meme: "meme"; }
-const TokenSortBy: { readonly MarketCap: "market_cap"; readonly Volume: "volume"; readonly Liquidity: "liquidity"; readonly PriceChange: "price_change"; readonly CreatedAt: "created_at"; readonly Holders: "holders"; readonly Rating: "rating"; readonly Fdv: "fdv"; readonly Txns: "txns"; }
-const TokenStatus: { readonly Active: "active"; readonly Verified: "verified"; readonly Unresolved: "unresolved"; readonly Scam: "scam"; }
-const TokenTraderSortBy: { readonly RealizedPnl: "realized_pnl"; readonly Bought: "bought"; readonly Holding: "holding"; }
-const TxType: { readonly All: "all"; readonly Buy: "buy"; readonly Sell: "sell"; readonly Mint: "mint"; readonly Burn: "burn"; readonly AddLiquidity: "add_liquidity"; readonly RemoveLiquidity: "remove_liquidity"; }
-const VerdictStatus: { readonly Ok: "ok"; readonly Watch: "watch"; readonly Blocked: "blocked"; readonly Unknown: "unknown"; }
-const WalletSortBy: { readonly TotalPnl: "total_pnl"; readonly RealizedPnl: "realized_pnl"; readonly Volume: "volume"; readonly WinRate: "win_rate"; readonly Trades: "trades"; readonly UserScore: "user_score"; }
-const WalletType: { readonly Unknown: "unknown"; readonly Human: "human"; readonly Robot: "robot"; }
-const WalletWindow: { readonly D1: "1d"; readonly D7: "7d"; readonly D30: "30d"; readonly Y1: "1y"; readonly All: "all"; }
+const PairStatus
+const PairStatus readonly Active: "active"
+const PairStatus readonly Scam: "scam"
+const PairStatus readonly Unresolved: "unresolved"
+const PairStatus readonly Verified: "verified"
+const PerpAction
+const PerpAction readonly CloseLong: "close_long"
+const PerpAction readonly CloseShort: "close_short"
+const PerpAction readonly FlipLong: "flip_long"
+const PerpAction readonly FlipShort: "flip_short"
+const PerpAction readonly OpenLong: "open_long"
+const PerpAction readonly OpenShort: "open_short"
+const PerpSortBy
+const PerpSortBy readonly CreatedAt: "created_at"
+const PerpSortBy readonly PriceChange: "price_change"
+const PerpSortBy readonly Transactions: "transactions"
+const PerpSortBy readonly Trending: "trending"
+const PerpSortBy readonly Volume: "volume"
+const Plan
+const Plan readonly Enterprise: "enterprise"
+const Plan readonly Free: "free"
+const Plan readonly Startup: "startup"
+const Plan readonly Unicorn: "unicorn"
+const PositionSortBy
+const PositionSortBy readonly Hold: "hold"
+const PositionSortBy readonly RealizedPnl: "realized_pnl"
+const PositionSortBy readonly Token: "token"
+const PositionSortBy readonly UnrealizedPnl: "unrealized_pnl"
+const PositionState
+const PositionState readonly Any: "any"
+const PositionState readonly Closed: "closed"
+const PositionState readonly Open: "open"
+const ReasonSlug
+const ReasonSlug readonly DeployerRug: "deployer_rug"
+const ReasonSlug readonly DuplicateSymbol: "duplicate_symbol"
+const ReasonSlug readonly HighTax: "high_tax"
+const ReasonSlug readonly Honeypot: "honeypot"
+const ReasonSlug readonly LpUnlocked: "lp_unlocked"
+const ReasonSlug readonly OwnerCanMint: "owner_can_mint"
+const ReasonSlug readonly SellBlocked: "sell_blocked"
+const ReasonSlug readonly UnresolvedMetadata: "unresolved_metadata"
+const ResolutionType
+const ResolutionType readonly D1: "1D"
+const ResolutionType readonly H12: "12H"
+const ResolutionType readonly H1: "1H"
+const ResolutionType readonly H2: "2H"
+const ResolutionType readonly H4: "4H"
+const ResolutionType readonly H6: "6H"
+const ResolutionType readonly M1: "1M"
+const ResolutionType readonly M6: "6M"
+const ResolutionType readonly N15: "15"
+const ResolutionType readonly N1: "1"
+const ResolutionType readonly N30: "30"
+const ResolutionType readonly N3: "3"
+const ResolutionType readonly N45: "45"
+const ResolutionType readonly N5: "5"
+const ResolutionType readonly W1: "1W"
+const ResolutionType readonly Y1: "1Y"
+const RiskSignalGroup
+const RiskSignalGroup readonly CanBeSeized: "can_be_seized"
+const RiskSignalGroup readonly CannotExit: "cannot_exit"
+const RiskSignalGroup readonly ExitIsTaxed: "exit_is_taxed"
+const RiskSignalGroup readonly LiquidityCanLeave: "liquidity_can_leave"
+const RiskSignalGroup readonly OperatorRecord: "operator_record"
+const RiskSignalGroup readonly Unverified: "unverified"
+const RiskSignalSeverity
+const RiskSignalSeverity readonly Critical: "critical"
+const RiskSignalSeverity readonly Info: "info"
+const RiskSignalSeverity readonly Warning: "warning"
+const SortBy
+const SortBy readonly Apr: "apr"
+const SortBy readonly CreatedAt: "created_at"
+const SortBy readonly Hottest: "hottest"
+const SortBy readonly Liquidity: "liquidity"
+const SortBy readonly Popular: "popular"
+const SortBy readonly PriceChange: "price_change"
+const SortBy readonly Score: "score"
+const SortBy readonly Transactions: "transactions"
+const SortBy readonly Trending: "trending"
+const SortBy readonly UpdatedAt: "updated_at"
+const SortBy readonly Volume: "volume"
+const TimeFrame
+const TimeFrame readonly H1: "1h"
+const TimeFrame readonly H24: "24h"
+const TimeFrame readonly H6: "6h"
+const TimeFrame readonly M5: "5m"
+const TokenCategory
+const TokenCategory readonly Default: "default"
+const TokenCategory readonly Meme: "meme"
+const TokenCategory readonly Native: "native"
+const TokenCategory readonly StablecoinUsd: "stablecoin-usd"
+const TokenCategory readonly Unknown: "unknown"
+const TokenCategory readonly Wrapped: "wrapped"
+const TokenSortBy
+const TokenSortBy readonly CreatedAt: "created_at"
+const TokenSortBy readonly Fdv: "fdv"
+const TokenSortBy readonly Holders: "holders"
+const TokenSortBy readonly Liquidity: "liquidity"
+const TokenSortBy readonly MarketCap: "market_cap"
+const TokenSortBy readonly PriceChange: "price_change"
+const TokenSortBy readonly Rating: "rating"
+const TokenSortBy readonly Txns: "txns"
+const TokenSortBy readonly Volume: "volume"
+const TokenStatus
+const TokenStatus readonly Active: "active"
+const TokenStatus readonly Scam: "scam"
+const TokenStatus readonly Unresolved: "unresolved"
+const TokenStatus readonly Verified: "verified"
+const TokenTraderSortBy
+const TokenTraderSortBy readonly Bought: "bought"
+const TokenTraderSortBy readonly Holding: "holding"
+const TokenTraderSortBy readonly RealizedPnl: "realized_pnl"
+const TxType
+const TxType readonly AddLiquidity: "add_liquidity"
+const TxType readonly All: "all"
+const TxType readonly Burn: "burn"
+const TxType readonly Buy: "buy"
+const TxType readonly Mint: "mint"
+const TxType readonly RemoveLiquidity: "remove_liquidity"
+const TxType readonly Sell: "sell"
+const VerdictStatus
+const VerdictStatus readonly Blocked: "blocked"
+const VerdictStatus readonly Ok: "ok"
+const VerdictStatus readonly Unknown: "unknown"
+const VerdictStatus readonly Watch: "watch"
+const WalletSortBy
+const WalletSortBy readonly HumanScore: "human_score"
+const WalletSortBy readonly RealizedPnl: "realized_pnl"
+const WalletSortBy readonly TotalPnl: "total_pnl"
+const WalletSortBy readonly Trades: "trades"
+const WalletSortBy readonly UserScore: "user_score"
+const WalletSortBy readonly Volume: "volume"
+const WalletSortBy readonly WinRate: "win_rate"
+const WalletType
+const WalletType readonly Human: "human"
+const WalletType readonly Robot: "robot"
+const WalletType readonly Unknown: "unknown"
+const WalletWindow
+const WalletWindow readonly All: "all"
+const WalletWindow readonly D1: "1d"
+const WalletWindow readonly D30: "30d"
+const WalletWindow readonly D7: "7d"
+const WalletWindow readonly Y1: "1y"
 function paginate<T>(fetchPage: (cursor: string | undefined) => Promise<{ items: T[]; next_cursor?: string | undefined; }>, start: string | undefined, maxPages: number | undefined): AsyncGenerator<T, void, undefined>
 interface AveeClientOptions
 interface AveeClientOptions apiKey?: string | undefined
@@ -290,6 +457,8 @@ interface PerpLiquidationsParams chain?: string | undefined
 interface PerpLiquidationsParams from?: number | undefined
 interface PerpLiquidationsParams market?: m.Address | undefined
 interface PerpLiquidationsParams to?: number | undefined
+interface PerpStatsParams
+interface PerpStatsParams chain?: string | undefined
 interface PerpsParams
 interface PerpsParams chains?: m.ChainSlug[] | undefined
 interface PerpsParams cursor?: string | undefined
@@ -393,6 +562,7 @@ interface WalletsParams cursor?: string | undefined
 interface WalletsParams exclude_bots?: boolean | undefined
 interface WalletsParams limit?: number | undefined
 interface WalletsParams max_avg_hold_seconds?: number | undefined
+interface WalletsParams min_human_score?: number | undefined
 interface WalletsParams min_realized_pnl_usd?: number | undefined
 interface WalletsParams min_total_pnl_usd?: number | undefined
 interface WalletsParams min_trades?: number | undefined
@@ -453,6 +623,8 @@ model ChainInfo new_deployers_24h?: number
 model ChainInfo new_pairs_24h?: number
 model ChainInfo new_pairs_24h_total?: number
 model ChainInfo pairs?: number
+model ChainInfo perp_txns_24h?: number
+model ChainInfo perp_volume_24h?: number
 model ChainInfo protocols: FactoryType[]
 model ChainInfo quality_liquidity_usd?: number
 model ChainInfo scams_24h?: number
@@ -549,21 +721,36 @@ model FarmFactory name: string
 model FarmInfo
 model FarmInfo address: Address
 model FarmInfo apr_daily: FarmApr
+model FarmInfo apr_diagnostic?: DecimalString
+model FarmInfo apr_max?: DecimalString
 model FarmInfo apr_year: FarmApr
 model FarmInfo data_quality_flags?: string[]
 model FarmInfo factory?: FarmFactory
+model FarmInfo family?: string
+model FarmInfo farm_key?: string
 model FarmInfo lifecycle_state?: string
 model FarmInfo network: ChainRef
 model FarmInfo pid: number
+model FarmInfo reward_streams?: FarmRewardStream[]
 model FarmInfo reward_token: FarmRewardToken
 model FarmInfo status: FarmStatus
 model FarmInfo ticker: string
 model FarmInfo tvl: DecimalString
 model FarmInfo updated_at: string
+model FarmInfo venue?: string
+model FarmInfo verified?: boolean
 model FarmPage
 model FarmPage items: FarmInfo[]
 model FarmPage next_cursor?: string
 model FarmPage prev_cursor?: string
+model FarmRewardStream
+model FarmRewardStream apr?: DecimalString
+model FarmRewardStream decimals: number
+model FarmRewardStream end_at?: string
+model FarmRewardStream price_usd?: DecimalString
+model FarmRewardStream status: string
+model FarmRewardStream symbol: string
+model FarmRewardStream token: Address
 model FarmRewardToken
 model FarmRewardToken address: Address
 model FarmRewardToken chain_id: number
@@ -574,6 +761,9 @@ model FloatTimeframes h1: number
 model FloatTimeframes h24: number
 model FloatTimeframes h6: number
 model FloatTimeframes m5: number
+model HumanScore
+model HumanScore status: "unknown" | "rated" | "excluded" | (string & {})
+model HumanScore value: number
 model KeyInfo
 model KeyInfo max_limit?: number
 model KeyInfo name: string
@@ -797,6 +987,14 @@ model PaymentResource description?: string
 model PaymentResource mimeType?: string
 model PaymentResource serviceName?: string
 model PaymentResource url: string
+model PerpFlow
+model PerpFlow close_long_usd: number
+model PerpFlow close_short_usd: number
+model PerpFlow liquidated_long_usd: number
+model PerpFlow liquidated_short_usd: number
+model PerpFlow liquidations: number
+model PerpFlow open_long_usd: number
+model PerpFlow open_short_usd: number
 model PerpHistory
 model PerpHistory chain: ChainRef
 model PerpHistory interval: string
@@ -808,10 +1006,16 @@ model PerpLiquidations items: LiquidationDay[]
 model PerpLiquidations market?: Address
 model PerpLiquidations stale: boolean
 model PerpMarket
+model PerpMarket borrow_long_1h?: number
+model PerpMarket borrow_short_1h?: number
 model PerpMarket day_notional_volume?: number
+model PerpMarket funding_long_1h?: number
 model PerpMarket funding_rate?: number
+model PerpMarket funding_short_1h?: number
 model PerpMarket mark_price?: number
 model PerpMarket max_leverage?: number
+model PerpMarket oi_long_usd?: number
+model PerpMarket oi_short_usd?: number
 model PerpMarket only_isolated?: boolean
 model PerpMarket open_interest?: number
 model PerpMarket open_interest_usd?: number
@@ -831,6 +1035,14 @@ model PerpPoint oi_usd: number
 model PerpPoint oracle_price: number
 model PerpPoint premium: number
 model PerpPoint timestamp: string
+model PerpStats
+model PerpStats h1: PerpFlow
+model PerpStats h24: PerpFlow
+model PerpStats h6: PerpFlow
+model PerpStats liquidations_stale: boolean
+model PerpStats m5: PerpFlow
+model PerpStats max_liquidation_usd_24h?: number
+model PerpStats open_interest_usd_24h_ago?: number
 model Problem
 model Problem code: ErrorCode
 model Problem detail?: string
@@ -1120,6 +1332,7 @@ model Transaction event_data: TransactionEventData
 model Transaction from_address: Address
 model Transaction hash: string
 model Transaction maker_address: Address
+model Transaction perp_action?: PerpAction
 model Transaction timestamp: string
 model Transaction to_address: Address
 model Transaction tx_type: TxType
@@ -1191,6 +1404,7 @@ model WalletListItem
 model WalletListItem address: Address
 model WalletListItem chain: ChainRef
 model WalletListItem copy_eligible?: boolean
+model WalletListItem human_score?: HumanScore
 model WalletListItem labels?: WalletLabel[]
 model WalletListItem metrics: WalletMetrics
 model WalletListItem scammer_score?: ScammerScore
@@ -1318,6 +1532,7 @@ model WalletProfile copy_eligible?: boolean
 model WalletProfile first_onchain_at?: string
 model WalletProfile first_seen_at?: string
 model WalletProfile human_known?: boolean
+model WalletProfile human_score?: HumanScore
 model WalletProfile labels?: WalletLabel[]
 model WalletProfile last_active_at?: string
 model WalletProfile metrics?: WalletMetrics[]
@@ -1444,6 +1659,13 @@ type PairStatus | "verified"
 type PairStatus | (string & {})
 type PaymentSignature | { header: string; }
 type PaymentSignature | { payload: Record<string, unknown>; }
+type PerpAction | "close_long"
+type PerpAction | "close_short"
+type PerpAction | "flip_long"
+type PerpAction | "flip_short"
+type PerpAction | "open_long"
+type PerpAction | "open_short"
+type PerpAction | (string & {})
 type PerpSortBy | "created_at"
 type PerpSortBy | "price_change"
 type PerpSortBy | "transactions"
@@ -1563,6 +1785,7 @@ type VerdictStatus | "ok"
 type VerdictStatus | "unknown"
 type VerdictStatus | "watch"
 type VerdictStatus | (string & {})
+type WalletSortBy | "human_score"
 type WalletSortBy | "realized_pnl"
 type WalletSortBy | "total_pnl"
 type WalletSortBy | "trades"

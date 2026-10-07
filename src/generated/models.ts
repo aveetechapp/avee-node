@@ -316,6 +316,8 @@ export interface ChainInfo {
   metrics_stale?: boolean;
   quality_liquidity_usd?: number;
   txns_24h?: number;
+  perp_volume_24h?: number;
+  perp_txns_24h?: number;
   new_pairs_24h?: number;
   new_pairs_24h_total?: number;
   scams_total?: number;
@@ -450,6 +452,13 @@ export interface FarmInfo {
   status: FarmStatus;
   lifecycle_state?: string;
   data_quality_flags?: string[];
+  family?: string;
+  farm_key?: string;
+  venue?: string;
+  verified?: boolean;
+  apr_diagnostic?: DecimalString;
+  apr_max?: DecimalString;
+  reward_streams?: FarmRewardStream[];
 }
 
 export interface FarmPage {
@@ -463,6 +472,16 @@ export interface FarmRewardToken {
   name: string;
   symbol: string;
   chain_id: number;
+}
+
+export interface FarmRewardStream {
+  token: Address;
+  symbol: string;
+  decimals: number;
+  apr?: DecimalString;
+  price_usd?: DecimalString;
+  end_at?: string;
+  status: string;
 }
 
 export type FarmSortBy = "tvl" | "apr" | "updated_at" | (string & {});
@@ -614,6 +633,37 @@ export interface PairVerdict {
   status: VerdictStatus;
 }
 
+export interface PerpFlow {
+  open_long_usd: number;
+  close_long_usd: number;
+  open_short_usd: number;
+  close_short_usd: number;
+  liquidated_long_usd: number;
+  liquidated_short_usd: number;
+  liquidations: number;
+}
+
+export interface PerpStats {
+  m5: PerpFlow;
+  h1: PerpFlow;
+  h6: PerpFlow;
+  h24: PerpFlow;
+  open_interest_usd_24h_ago?: number;
+  max_liquidation_usd_24h?: number;
+  liquidations_stale: boolean;
+}
+
+export type PerpAction = "open_long" | "close_long" | "open_short" | "close_short" | "flip_long" | "flip_short" | (string & {});
+
+export const PerpAction = {
+  OpenLong: "open_long",
+  CloseLong: "close_long",
+  OpenShort: "open_short",
+  CloseShort: "close_short",
+  FlipLong: "flip_long",
+  FlipShort: "flip_short",
+} as const;
+
 export interface PerpMarket {
   max_leverage?: number;
   only_isolated?: boolean;
@@ -624,6 +674,12 @@ export interface PerpMarket {
   oracle_price?: number;
   premium?: number;
   day_notional_volume?: number;
+  funding_long_1h?: number;
+  funding_short_1h?: number;
+  borrow_long_1h?: number;
+  borrow_short_1h?: number;
+  oi_long_usd?: number;
+  oi_short_usd?: number;
   synced_at?: string;
 }
 
@@ -1071,6 +1127,7 @@ export interface Transaction {
   from_address: Address;
   to_address: Address;
   tx_type: TxType;
+  perp_action?: PerpAction;
   block_info: TransactionBlockInfo;
   event_data: TransactionEventData;
 }
@@ -1129,7 +1186,7 @@ export const WalletWindow = {
   All: "all",
 } as const;
 
-export type WalletSortBy = "total_pnl" | "realized_pnl" | "volume" | "win_rate" | "trades" | "user_score" | (string & {});
+export type WalletSortBy = "total_pnl" | "realized_pnl" | "volume" | "win_rate" | "trades" | "user_score" | "human_score" | (string & {});
 
 export const WalletSortBy = {
   TotalPnl: "total_pnl",
@@ -1138,6 +1195,7 @@ export const WalletSortBy = {
   WinRate: "win_rate",
   Trades: "trades",
   UserScore: "user_score",
+  HumanScore: "human_score",
 } as const;
 
 export type PositionSortBy = "token" | "realized_pnl" | "unrealized_pnl" | "hold" | (string & {});
@@ -1175,6 +1233,11 @@ export interface WalletLabel {
 }
 
 export interface UserScore {
+  value: number;
+  status: "unknown" | "rated" | "excluded" | (string & {});
+}
+
+export interface HumanScore {
   value: number;
   status: "unknown" | "rated" | "excluded" | (string & {});
 }
@@ -1241,6 +1304,7 @@ export interface WalletProfile {
   last_active_at?: string;
   age_is_estimated?: boolean;
   user_score?: UserScore;
+  human_score?: HumanScore;
   scammer_score?: ScammerScore;
   signals?: WalletScoreSignal[];
   metrics?: WalletMetrics[];
@@ -1254,6 +1318,7 @@ export interface WalletListItem {
   labels?: WalletLabel[];
   copy_eligible?: boolean;
   user_score?: UserScore;
+  human_score?: HumanScore;
   scammer_score?: ScammerScore;
   metrics: WalletMetrics;
 }

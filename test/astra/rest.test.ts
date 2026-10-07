@@ -193,6 +193,24 @@ describe("REST", () => {
     await expect(c.latestPrices([BTC])).rejects.toThrow(AstraValidationError);
   });
 
+  it("calls the default fetch with the global object as its receiver, as browsers require", async () => {
+    fake = await startFake((_req, res) => json(res, 200, [feedMeta]));
+    const realFetch = globalThis.fetch;
+    const receivers: unknown[] = [];
+    globalThis.fetch = function (this: unknown, input: Parameters<typeof fetch>[0], init?: Parameters<typeof fetch>[1]) {
+      receivers.push(this);
+      if (this !== globalThis && this !== undefined) throw new TypeError("Illegal invocation");
+      return realFetch(input, init);
+    } as typeof fetch;
+    try {
+      const feeds = await new AstraClient({ baseUrl: fake.url }).priceFeeds();
+      expect(feeds).toHaveLength(1);
+      expect(receivers).toEqual([globalThis]);
+    } finally {
+      globalThis.fetch = realFetch;
+    }
+  });
+
   it("validates its options", () => {
     expect(() => new AstraClient({ baseUrl: "ftp://x" })).toThrow(AstraValidationError);
     expect(() => new AstraClient({ baseUrl: "not a url" })).toThrow(AstraValidationError);

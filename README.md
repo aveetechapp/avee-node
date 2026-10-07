@@ -67,6 +67,7 @@ server's default, shown on hover as `@default`.
 | `pairBatch(body)` | `POST /pairs/batch` | Many pairs in one call |
 | `perps(params), iterPerps` | `GET /perps` | Perpetual markets |
 | `perpHistory(market, params)` | `GET /perps/{market}/history` | Open interest, funding and mark history of a perpetual |
+| `perpStats(market, params)` | `GET /perps/{market}/stats` | How positions on a perpetual opened, closed and were liquidated over the last day |
 | `perpLiquidations(params)` | `GET /perps/liquidations` | Daily liquidations of a perpetual or a whole venue |
 | `deployerTokens(address, params), iterDeployerTokens` | `GET /deployers/{address}/tokens` | Launches of one deployer, with its reputation card |
 | **token** | | |
