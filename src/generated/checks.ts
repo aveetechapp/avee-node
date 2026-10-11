@@ -16,6 +16,7 @@ const listOfPairBatchItem = list(checkPairBatchItem);
 const listOfPerpPoint = list(checkPerpPoint);
 const listOfLiquidationDay = list(checkLiquidationDay);
 const listOfTokenInstance = list(checkTokenInstance);
+const listOfLinkedAsset = list(checkLinkedAsset);
 const listOfTokenInfo = list(checkTokenInfo);
 const listOfTokenBatchItem = list(checkTokenBatchItem);
 const listOfTokenHolder = list(checkTokenHolder);
@@ -229,6 +230,7 @@ export function checkTokenInfo(v: unknown): void {
   opt(o, "windows", checkTokenWindows);
   opt(o, "holder_stats", checkTokenHolderStats);
   opt(o, "profile", checkTokenProfile);
+  opt(o, "linked_assets", listOfLinkedAsset);
 }
 
 export function checkTokenVerdict(v: unknown): void {
@@ -768,6 +770,12 @@ function checkTokenProfile(v: unknown): void {
   req(o, "verified", bool);
   opt(o, "verification_tier", str);
   opt(o, "verified_by", listOfStr);
+}
+
+function checkLinkedAsset(v: unknown): void {
+  const o = obj(v);
+  req(o, "chain", checkChainRef);
+  req(o, "address", str);
 }
 
 function checkBriefScore(v: unknown): void {

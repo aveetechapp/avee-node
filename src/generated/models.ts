@@ -976,6 +976,12 @@ export interface TokenInfo {
   windows?: TokenWindows;
   holder_stats?: TokenHolderStats;
   profile?: TokenProfile;
+  linked_assets?: LinkedAsset[];
+}
+
+export interface LinkedAsset {
+  chain: ChainRef;
+  address: Address;
 }
 
 export interface TokenLaunch {
