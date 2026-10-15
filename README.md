@@ -61,6 +61,8 @@ server's default, shown on hover as `@default`.
 | `pair(chain, address)` | `GET /chains/{chain}/pairs/{address}` | One liquidity pair |
 | `pairTrades(chain, address, params), iterPairTrades` | `GET /chains/{chain}/pairs/{address}/trades` | Trade tape of a pair |
 | `pairCandles(chain, address, params)` | `GET /chains/{chain}/pairs/{address}/candles` | OHLCV candles |
+| `chainCctpFlows(chain, params)` | `GET /chains/{chain}/cctp` | USDC moved in and out of one chain through Circle CCTP |
+| `chainCctpTransfers(chain, params)` | `GET /chains/{chain}/cctp/transfers` | Largest CCTP transfers and the addresses moving the most on one chain |
 | `trending(params), iterTrending` | `GET /trending` | Trending pairs right now |
 | `pairsNew(params), iterPairsNew` | `GET /pairs/new` | Newest pairs on one chain |
 | `launchpadTokens(params), iterLaunchpadTokens` | `GET /launchpads/tokens` | Launchpad launches by stage (new, bonding or graduated) |

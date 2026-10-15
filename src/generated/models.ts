@@ -1545,6 +1545,83 @@ export interface WalletLabelList {
   items: WalletLabelSet[];
 }
 
+export interface CctpSide {
+  usd: number;
+  transfers: number;
+  amount?: DecimalString;
+}
+
+export interface CctpRoute {
+  counterpart: string;
+  counterpart_domain: number;
+  token: Address;
+  priced: boolean;
+  in: CctpSide;
+  out: CctpSide;
+  fee?: DecimalString;
+  fee_usd?: number;
+  fast_transfers?: number;
+}
+
+export interface CctpDay {
+  day: string;
+  in: CctpSide;
+  out: CctpSide;
+}
+
+export interface CctpFlows {
+  chain: ChainRef;
+  available: boolean;
+  from?: string;
+  to?: string;
+  in?: CctpSide;
+  out?: CctpSide;
+  net_usd?: number;
+  fee_usd?: number;
+  fast_share?: number;
+  routes?: CctpRoute[];
+  days?: CctpDay[];
+}
+
+export type CctpDirection = string;
+
+export interface CctpTransfer {
+  time?: string;
+  tx_hash: string;
+  direction: CctpDirection;
+  counterpart: string;
+  counterpart_domain?: number;
+  token: Address;
+  amount: DecimalString;
+  usd?: number;
+  priced: boolean;
+  fast?: boolean;
+  address?: Address;
+  counterparty?: string;
+  via?: string;
+  wallet?: WalletLabelSet;
+}
+
+export interface CctpAccount {
+  address: Address;
+  direction: CctpDirection;
+  token: Address;
+  amount: DecimalString;
+  usd?: number;
+  priced: boolean;
+  transfers: number;
+  wallet?: WalletLabelSet;
+}
+
+export interface CctpTransfers {
+  chain: ChainRef;
+  available: boolean;
+  from?: string;
+  to?: string;
+  largest: CctpTransfer[];
+  accounts: CctpAccount[];
+}
+
 export type LeaderboardScope = "chains" | "protocols" | (string & {});
 
 export const LeaderboardScope = {

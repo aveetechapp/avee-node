@@ -12,6 +12,10 @@ const listOfToken = list(checkToken);
 const listOfTransaction = list(checkTransaction);
 const listOfInt = list(int);
 const listOfNum = list(num);
+const listOfCctpRoute = list(checkCctpRoute);
+const listOfCctpDay = list(checkCctpDay);
+const listOfCctpTransfer = list(checkCctpTransfer);
+const listOfCctpAccount = list(checkCctpAccount);
 const listOfPairBatchItem = list(checkPairBatchItem);
 const listOfPerpPoint = list(checkPerpPoint);
 const listOfLiquidationDay = list(checkLiquidationDay);
@@ -147,6 +151,31 @@ export function checkChartCandles(v: unknown): void {
   req(o, "c", listOfNum);
   req(o, "v", listOfNum);
   opt(o, "err_msg", str);
+}
+
+export function checkCctpFlows(v: unknown): void {
+  const o = obj(v);
+  req(o, "chain", checkChainRef);
+  req(o, "available", bool);
+  opt(o, "from", str);
+  opt(o, "to", str);
+  opt(o, "in", checkCctpSide);
+  opt(o, "out", checkCctpSide);
+  opt(o, "net_usd", num);
+  opt(o, "fee_usd", num);
+  opt(o, "fast_share", num);
+  opt(o, "routes", listOfCctpRoute);
+  opt(o, "days", listOfCctpDay);
+}
+
+export function checkCctpTransfers(v: unknown): void {
+  const o = obj(v);
+  req(o, "chain", checkChainRef);
+  req(o, "available", bool);
+  opt(o, "from", str);
+  opt(o, "to", str);
+  req(o, "largest", listOfCctpTransfer);
+  req(o, "accounts", listOfCctpAccount);
 }
 
 export function checkPairBatchResponse(v: unknown): void {
@@ -642,6 +671,63 @@ function checkTransaction(v: unknown): void {
   opt(o, "perp_action", str);
   req(o, "block_info", checkTransactionBlockInfo);
   req(o, "event_data", checkTransactionEventData);
+}
+
+function checkCctpSide(v: unknown): void {
+  const o = obj(v);
+  req(o, "usd", num);
+  req(o, "transfers", int);
+  opt(o, "amount", str);
+}
+
+function checkCctpRoute(v: unknown): void {
+  const o = obj(v);
+  req(o, "counterpart", str);
+  req(o, "counterpart_domain", int);
+  req(o, "token", str);
+  req(o, "priced", bool);
+  req(o, "in", checkCctpSide);
+  req(o, "out", checkCctpSide);
+  opt(o, "fee", str);
+  opt(o, "fee_usd", num);
+  opt(o, "fast_transfers", int);
+}
+
+function checkCctpDay(v: unknown): void {
+  const o = obj(v);
+  req(o, "day", str);
+  req(o, "in", checkCctpSide);
+  req(o, "out", checkCctpSide);
+}
+
+function checkCctpTransfer(v: unknown): void {
+  const o = obj(v);
+  opt(o, "time", str);
+  req(o, "tx_hash", str);
+  req(o, "direction", str);
+  req(o, "counterpart", str);
+  opt(o, "counterpart_domain", int);
+  req(o, "token", str);
+  req(o, "amount", str);
+  opt(o, "usd", num);
+  req(o, "priced", bool);
+  opt(o, "fast", bool);
+  opt(o, "address", str);
+  opt(o, "counterparty", str);
+  opt(o, "via", str);
+  opt(o, "wallet", checkWalletLabelSet);
+}
+
+function checkCctpAccount(v: unknown): void {
+  const o = obj(v);
+  req(o, "address", str);
+  req(o, "direction", str);
+  req(o, "token", str);
+  req(o, "amount", str);
+  opt(o, "usd", num);
+  req(o, "priced", bool);
+  req(o, "transfers", int);
+  opt(o, "wallet", checkWalletLabelSet);
 }
 
 function checkPairBatchItem(v: unknown): void {
